@@ -34,7 +34,7 @@ function PaginationContent({
 }
 
 function PaginationItem({ ...props }: React.ComponentProps<"li">) {
-  return <li data-slot="pagination-item" className="outfit-regular" {...props} />
+  return <li data-slot="pagination-item" className="body-regular" {...props} />
 }
 
 type PaginationLinkProps = {
@@ -77,7 +77,7 @@ function PaginationPrevious({
       {...props}
     >
       <ChevronLeftIcon />
-      <span className="hidden sm:block outfit-regular">Previous</span>
+      <span className="hidden sm:block body-regular">Previous</span>
     </PaginationLink>
   )
 }
@@ -93,7 +93,7 @@ function PaginationNext({
       className={cn("gap-1 px-2.5 sm:pr-2.5", className)}
       {...props}
     >
-      <span className="hidden sm:block outfit-regular">Next</span>
+      <span className="hidden sm:block body-regular">Next</span>
       <ChevronRightIcon />
     </PaginationLink>
   )
@@ -111,7 +111,7 @@ function PaginationEllipsis({
       {...props}
     >
       <MoreHorizontalIcon className="size-4" />
-      <span className="sr-only outfit-regular">More pages</span>
+      <span className="sr-only body-regular">More pages</span>
     </span>
   )
 }

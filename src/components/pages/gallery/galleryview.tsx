@@ -1,10 +1,10 @@
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
-import { parseTags } from "@/lib/tags"; // import your tag utility
+import { parseTags } from "@/lib/tags";
 import { useEffect, useState } from "react";
 import { Loader } from "@/components/ui/loader";
+import { X } from "lucide-react";
 
-// Types based on Hygraph schema
 interface HygraphImage {
   id: string;
   imageTitle: string;
@@ -14,49 +14,46 @@ interface HygraphImage {
   imageTag: string[];
 }
 
-interface GalleryViewTag {
+interface GalleryTag {
   label: string;
-  border: string;   // using same keys as parseTags output
+  border: string;
   text: string;
 }
 
-interface GalleryView {
+interface GalleryItem {
   id: string;
   title: string;
   imageUrl: string;
   additionImageUrl?: string;
   description?: string;
-  tags: GalleryViewTag[];
+  tags: GalleryTag[];
 }
 
-// Sub-components
-const ColorDots = ({
-  colors = ["bg-violet-400", "bg-emerald-400", "bg-sky-400"],
-}: {
-  colors?: string[];
-}) => (
+const ColorDots = () => (
   <div className="flex w-full items-center justify-center gap-4">
-    {colors.map((color, index) => (
-      <div
-        key={index}
-        className={cn(
-          "rounded-full",
-          color,
-          index === 1 ? "w-12 h-5" : "w-5 h-5",
-        )}
-      />
-    ))}
+    <div className="w-5 h-5 rounded-full bg-orange-500" />
+    <div className="w-12 h-5 rounded-full bg-blue-500" />
+    <div className="w-5 h-5 rounded-full bg-purple-500" />
   </div>
 );
 
-const TagBadge = ({ tag }: { tag: GalleryViewTag }) => (
+const SectionHeader = () => (
+  <div className="flex flex-col items-center justify-center gap-4 md:gap-8">
+    <h1 className="bg-linear-to-b from-indigo-700 to-sky-200 bg-clip-text [-webkit-text-fill-color:transparent] [text-fill-color:transparent] body-semibold text-transparent text-3xl xl:text-5xl text-center tracking-[0] leading-normal xl:leading-18 3xl:leading-normal z-20">
+      Gallery
+    </h1>
+    <ColorDots />
+  </div>
+);
+
+const TagBadge = ({ tag }: { tag: GalleryTag }) => (
   <Badge
     variant="outline"
     className={cn(
-      "px-3 py-1.5 rounded-xl border",
+      "px-3 py-1.5 rounded-xl border-2",
       tag.border,
       tag.text,
-      "outfit-light font-light text-xs 3xl:text-sm tracking-[0] leading-[normal]",
+      "body-code-regular font-medium text-xs 3xl:text-sm tracking-tight leading-[normal]",
       "bg-transparent hover:bg-transparent",
     )}
   >
@@ -64,25 +61,29 @@ const TagBadge = ({ tag }: { tag: GalleryViewTag }) => (
   </Badge>
 );
 
-// Modal Component – now with body scroll lock and proper wheel scrolling
 const ImageModal = ({
   image,
   onClose,
 }: {
-  image: GalleryView | null;
+  image: GalleryItem | null;
   onClose: () => void;
 }) => {
-  // Lock body scroll when modal is open
   useEffect(() => {
-    if (image) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
+    if (!image) return;
+    document.documentElement.classList.add("lenis-stopped");
+    document.body.style.overflow = "hidden";
     return () => {
+      document.documentElement.classList.remove("lenis-stopped");
       document.body.style.overflow = "";
     };
   }, [image]);
+
+  useEffect(() => {
+    if (!image) return;
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [image, onClose]);
 
   if (!image) return null;
 
@@ -92,111 +93,103 @@ const ImageModal = ({
       onClick={onClose}
     >
       <div
-        className="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto p-0 relative"
+        className="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto relative"
         onClick={(e) => e.stopPropagation()}
-        // Ensure the modal content scrolls with the wheel
-        onWheel={(e) => e.stopPropagation()}
+        data-lenis-prevent
       >
         <button
-          className="absolute top-4 right-4 text-gray-500 hover:text-gray-800 text-2xl z-10"
+          className="absolute top-4 right-4 z-10 bg-white/90 rounded-full w-10 h-10 flex items-center justify-center text-neutral-700 hover:bg-neutral-100"
           onClick={onClose}
+          aria-label="Close"
         >
-          ×
+          <X size={20} />
         </button>
 
-
-        <div className="space-y-4">
-
-          <div className="space-y-4 p-6">
-                    <h2 className="text-2xl outfit-semibold mb-4">{image.title}</h2>
-          {/* Main Image */}
+        <div className="space-y-4 p-6">
+          <h2 className="text-2xl body-semibold mb-4">{image.title}</h2>
           <img
             src={image.imageUrl}
             alt={image.title}
             className="w-full rounded-lg object-contain"
           />
-
-          {/* Additional Image */}
           {image.additionImageUrl && (
-            <div>
-              <img
-                src={image.additionImageUrl}
-                alt={`${image.title} - additional`}
-                className="w-full rounded-lg object-contain"
-              />
-            </div>
+            <img
+              src={image.additionImageUrl}
+              alt={`${image.title} - additional`}
+              className="w-full rounded-lg object-contain"
+            />
           )}
-
-          </div>
-
-          <div className="bg-white/60 backdrop-blur-2xl p-6 sticky bottom-0 gap-4 flex flex-col rounded-b-2xl">
-            {/* Description */}
-            {image.description && (
-              <div>
-                <p className="text-neutral-800 whitespace-pre-wrap">
-                  {image.description}
-                </p>
-              </div>
-            )}
-
-            {/* Tags */}
-            {image.tags.length > 0 && (
-              <div>
-                <div className="flex flex-wrap gap-2">
-                  {image.tags.map((tag) => (
-                    <TagBadge key={tag.label} tag={tag} />
-                  ))}
-                </div>
-              </div>
-            )}
-          </div>
         </div>
+
+        {(image.description || image.tags.length > 0) && (
+          <div className="bg-white/60 backdrop-blur-2xl p-6 sticky bottom-0 flex flex-col gap-4 rounded-b-2xl">
+            {image.description && (
+              <p className="text-neutral-800 whitespace-pre-wrap body-regular">
+                {image.description}
+              </p>
+            )}
+            {image.tags.length > 0 && (
+              <div className="flex flex-wrap gap-2">
+                {image.tags.map((tag) => (
+                  <TagBadge key={tag.label} tag={tag} />
+                ))}
+              </div>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );
 };
 
-// Gallery Card – Pinterest style (no fixed aspect ratio)
-const GalleryViewCard = ({
-  study,
+const GalleryCard = ({
+  item,
   onClick,
 }: {
-  study: GalleryView;
+  item: GalleryItem;
   onClick: () => void;
-}) => {
-  return (
-    <article
-      className="w-full flex flex-col gap-2 xl:gap-4 group cursor-pointer hover:scale-[1.02] transition-transform duration-300"
-      onClick={onClick}
-    >
-      <div className="relative overflow-hidden rounded-2xl">
-        <img
-          src={study.imageUrl}
-          alt={study.title}
-          className="w-full h-auto object-cover rounded-2xl group-hover:scale-105 transition-transform duration-500"
-        />
-        <div className="absolute inset-0 bg-linear-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-      </div>
+}) => (
+  <article
+    onClick={onClick}
+    className="w-full flex flex-col gap-2 xl:gap-4 group cursor-pointer hover:scale-[1.02] transition-transform duration-300 break-inside-avoid mb-8"
+  >
+    <div className="relative overflow-hidden rounded-2xl">
+      <img
+        src={item.imageUrl}
+        alt={item.title}
+        loading="lazy"
+        className="w-full h-auto object-cover rounded-2xl group-hover:scale-105 transition-transform duration-500"
+      />
+      <div className="absolute inset-0 bg-linear-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+    </div>
 
+    {item.tags.length > 0 && (
       <div className="flex items-center gap-2 flex-wrap">
-        {study.tags.map((tag) => (
-          <TagBadge key={`${study.id}-${tag.label}`} tag={tag} />
+        {item.tags.map((tag) => (
+          <TagBadge key={`${item.id}-${tag.label}`} tag={tag} />
         ))}
       </div>
-    </article>
-  );
-};
+    )}
+  </article>
+);
 
-// Main component
 function GalleryView() {
-  const [images, setImages] = useState<GalleryView[]>([]);
+  const [images, setImages] = useState<GalleryItem[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [selectedImage, setSelectedImage] = useState<GalleryView | null>(null);
+  const [selectedImage, setSelectedImage] = useState<GalleryItem | null>(null);
 
-  // Fetch gallery data from Hygraph
   useEffect(() => {
     async function fetchGallery() {
+      if (
+        !import.meta.env.PUBLIC_HYGRAPH_URL ||
+        !import.meta.env.PUBLIC_HYGRAPH_TOKEN
+      ) {
+        setError("Missing Hygraph configuration.");
+        setIsLoading(false);
+        return;
+      }
+
       try {
         const response = await fetch(import.meta.env.PUBLIC_HYGRAPH_URL, {
           method: "POST",
@@ -210,12 +203,8 @@ function GalleryView() {
                 galleries {
                   id
                   imageTitle
-                  image {
-                    url
-                  }
-                  additionImage {
-                    url
-                  }
+                  image { url }
+                  additionImage { url }
                   imageDescription
                   imageTag
                 }
@@ -225,31 +214,28 @@ function GalleryView() {
         });
 
         const json = await response.json();
-
-        if (json.errors) {
-          throw new Error(json.errors[0].message);
-        }
+        if (json.errors) throw new Error(json.errors[0].message);
 
         const hygraphImages: HygraphImage[] = json.data?.galleries ?? [];
-
-        // Map to GalleryView format using parseTags
-        const mappedImages: GalleryView[] = hygraphImages.map((item) => ({
-          id: item.id,
-          title: item.imageTitle,
-          imageUrl: item.image?.url || "/images/fallback.png",
-          additionImageUrl: item.additionImage?.url,
-          description: item.imageDescription,
-          tags: parseTags(item.imageTag).map((t) => ({
-            label: t.label,
-            border: t.border,
-            text: t.text,
+        setImages(
+          hygraphImages.map((item) => ({
+            id: item.id,
+            title: item.imageTitle,
+            imageUrl: item.image?.url || "/images/fallback.png",
+            additionImageUrl: item.additionImage?.url,
+            description: item.imageDescription,
+            tags: parseTags(item.imageTag).map((t) => ({
+              label: t.label,
+              border: t.border,
+              text: t.text,
+            })),
           })),
-        }));
-
-        setImages(mappedImages);
+        );
       } catch (err) {
         console.error("Error fetching gallery images:", err);
-        setError(err instanceof Error ? err.message : "Failed to load gallery");
+        setError(
+          err instanceof Error ? err.message : "Failed to load gallery",
+        );
       } finally {
         setIsLoading(false);
       }
@@ -258,58 +244,35 @@ function GalleryView() {
     fetchGallery();
   }, []);
 
-  if (isLoading) {
-    return (
-      <section className="w-full flex flex-col px-4 md:px-12 xl:px-32 bg-white gap-20 pb-10">
-        <div className="flex flex-col items-center justify-center gap-4 md:gap-8">
-          <h1 className="w-80 xl:w-126 3xl:w-150 bg-linear-to-b from-[#8E51FF] to-white bg-clip-text [-webkit-text-fill-color:transparent] [text-fill-color:transparent] outfit-semibold text-transparent text-3xl xl:text-[64px] 3xl:text-7xl text-center tracking-[0] leading-normal xl:leading-18 3xl:leading-normal z-20">
-            Gallery
-          </h1>
-          <ColorDots />
-        </div>
-        <div className="flex justify-center py-20">
-          <Loader/>
-        </div>
-      </section>
-    );
-  }
-
-  if (error) {
-    return (
-      <section className="w-full flex flex-col px-4 md:px-12 xl:px-32 bg-white gap-20 pb-10">
-        <div className="flex flex-col items-center justify-center gap-4 md:gap-8">
-          <h1 className="w-80 xl:w-126 3xl:w-150 bg-linear-to-b from-[#8E51FF] to-white bg-clip-text [-webkit-text-fill-color:transparent] [text-fill-color:transparent] outfit-semibold text-transparent text-3xl xl:text-[64px] 3xl:text-7xl text-center tracking-[0] leading-normal xl:leading-18 3xl:leading-normal z-20">
-            Gallery
-          </h1>
-          <ColorDots />
-        </div>
-        <div className="text-center text-red-600 py-20">
-          Failed to load gallery: {error}
-        </div>
-      </section>
-    );
-  }
-
   return (
     <section className="w-full flex flex-col px-4 md:px-12 xl:px-32 bg-white gap-20 pb-10">
-      <div className="flex flex-col items-center justify-center gap-4 md:gap-8">
-        <h1 className="w-80 xl:w-126 3xl:w-150 bg-linear-to-b from-[#8E51FF] to-white bg-clip-text [-webkit-text-fill-color:transparent] [text-fill-color:transparent] outfit-semibold text-transparent text-3xl xl:text-[64px] 3xl:text-7xl text-center tracking-[0] leading-normal xl:leading-18 3xl:leading-normal z-20">
-          Gallery
-        </h1>
-        <ColorDots />
-      </div>
+      <SectionHeader />
 
-      <div className="flex flex-col gap-4 w-full">
-        {images.length === 0 ? (
+      <div className="w-full">
+        {isLoading && (
+          <div className="flex justify-center py-20">
+            <Loader />
+          </div>
+        )}
+
+        {!isLoading && error && (
+          <div className="text-center text-red-600 py-20">
+            Failed to load gallery: {error}
+          </div>
+        )}
+
+        {!isLoading && !error && images.length === 0 && (
           <div className="text-center py-20 text-gray-500">
             No images found in gallery.
           </div>
-        ) : (
-          <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        )}
+
+        {!isLoading && !error && images.length > 0 && (
+          <div className="columns-1 md:columns-2 lg:columns-3 gap-8">
             {images.map((image) => (
-              <GalleryViewCard
+              <GalleryCard
                 key={image.id}
-                study={image}
+                item={image}
                 onClick={() => setSelectedImage(image)}
               />
             ))}

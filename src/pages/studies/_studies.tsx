@@ -1,5 +1,5 @@
 import Footer from "@/components/pages/footer";
-import HeaderBlue from "@/components/pages/header-blue";
+import HeaderAlternate from "@/components/pages/header-alternate";
 import Navbar from "@/components/pages/navbar";
 import CaseStudies from "@/components/pages/studies/case-studies";
 
@@ -13,7 +13,7 @@ function Studies({ currentPath }: StudiesProps) {
       <div className="w-full flex flex-col justify-center items-center gap-12 bg-white overflow-hidden shadow-neutral-200 shadow-2xl">
         <Navbar currentPath={currentPath} />
 
-        <HeaderBlue />
+        <HeaderAlternate />
 
         <CaseStudies />
 

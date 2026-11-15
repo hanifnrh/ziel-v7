@@ -158,28 +158,53 @@ html.lenis body {
   pointer-events: none;
 }
 
-.outfit-light {
-  font-family: "Outfit", sans-serif;
+@utility body-light {
+  font-family: "Google Sans Flex", sans-serif;
   font-weight: 300;
 }
 
-.outfit-regular {
-  font-family: "Outfit", sans-serif;
+@utility body-code-light {
+  font-family: "Google Sans Code", sans-serif;
+  font-weight: 300;
+}
+
+@utility body-regular {
+  font-family: "Google Sans Flex", sans-serif;
   font-weight: 400;
 }
 
-.outfit-medium {
-  font-family: "Outfit", sans-serif;
+@utility body-code-regular {
+  font-family: "Google Sans Code", sans-serif;
+  font-weight: 400;
+}
+
+@utility body-medium {
+  font-family: "Google Sans Flex", sans-serif;
   font-weight: 500;
 }
 
-.outfit-semibold {
-  font-family: "Outfit", sans-serif;
+@utility body-code-medium {
+  font-family: "Google Sans Code", sans-serif;
+  font-weight: 500;
+}
+
+@utility body-semibold {
+  font-family: "Google Sans Flex", sans-serif;
   font-weight: 600;
 }
 
-.outfit-bold {
-  font-family: "Outfit", sans-serif;
+@utility body-code-semibold {
+  font-family: "Google Sans Code", sans-serif;
+  font-weight: 600;
+}
+
+@utility body-bold {
+  font-family: "Google Sans Flex", sans-serif;
+  font-weight: 700;
+}
+
+@utility body-code-bold {
+  font-family: "Google Sans Code", sans-serif;
   font-weight: 700;
 }
 

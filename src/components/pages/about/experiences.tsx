@@ -26,21 +26,21 @@ interface BadgeProps {
 const badgeConfig = {
   internship: {
     icon: "/assets/badge-intern.png",
-    textColor: "text-purple-800",
+    textColor: "text-purple-800 tracking-tight",
     bgGradient: "bg-linear-to-b from-white to-[#FEF1FF]",
     borderColor: "border-purple-200",
     defaultText: "Internship",
   },
   contract: {
     icon: "/assets/badge-fulltime.png",
-    textColor: "text-amber-600",
+    textColor: "text-orange-600 tracking-tight",
     bgGradient: "bg-linear-to-b from-white to-[#FFF5E3]",
-    borderColor: "border-amber-200",
+    borderColor: "border-orange-200",
     defaultText: "Contract",
   },
   fulltime: {
     icon: "/assets/badge-fulltime.png", // You can change this to a different icon
-    textColor: "text-green-700",
+    textColor: "text-green-700 tracking-tight",
     bgGradient: "bg-linear-to-b from-white to-[#E3FFE3]",
     borderColor: "border-green-200",
     defaultText: "Full-time",
@@ -53,7 +53,7 @@ function Badge({ type, text, className = "", showIcon = true }: BadgeProps) {
 
   return (
     <div
-      className={`flex w-fit h-fit gap-1.5 px-2 p-1 lg:p-1.5 lg:px-3 rounded-2xl ${config.bgGradient} border ${config.borderColor} items-center justify-center ${config.textColor} outfit-light text-sm md:text-base ${className}`}
+      className={`flex w-fit h-fit gap-1.5 px-2 p-1 lg:p-1.5 lg:px-3 rounded-2xl ${config.bgGradient} border-2 ${config.borderColor} items-center justify-center ${config.textColor} body-code-regular text-sm ${className}`}
     >
       {showIcon && (
         <img src={config.icon} alt={`${type} badge`} className="w-3 h-3" />
@@ -79,10 +79,10 @@ function ColorDots() {
       <ColorDot
         width="w-12 xl:w-15"
         height="h-4 xl:h-6"
-        color="bg-violet-400"
+        color="bg-orange-500"
       />
-      <ColorDot color="bg-emerald-400" />
-      <ColorDot color="bg-sky-400" />
+      <ColorDot color="bg-blue-500" />
+      <ColorDot color="bg-purple-500" />
     </div>
   );
 }
@@ -110,16 +110,16 @@ function ExperienceItem({
 
           <div className="flex w-full justify-between">
             <div className="w-full flex flex-col gap-1">
-              <h4 className="outfit-medium text-neutral-900 text-xl lg:text-2xl">
+              <h4 className="body-medium text-neutral-900 text-xl lg:text-2xl">
                 {title}
               </h4>
-              <p className="outfit-regular text-neutral-600 text-base">
+              <p className="body-regular text-neutral-600 text-base">
                 {company}
               </p>
-              <p className="outfit-light text-neutral-600 text-base">
+              <p className="body-light text-neutral-600 text-base">
                 {duration}
               </p>
-              <p className="outfit-light text-neutral-600 text-base">
+              <p className="body-light text-neutral-600 text-base">
                 {location}
               </p>
             </div>
@@ -132,7 +132,7 @@ function ExperienceItem({
         </div>
         {/* BOTTOM LEFT */}
         <div className="pl-6 md:pl-18 lg:pl-20">
-          <ul className="outfit-light text-neutral-600 list-disc text-base">
+          <ul className="body-light text-neutral-600 list-disc text-base">
             {descriptions.map((desc, index) => (
               <li key={index}>{desc}</li>
             ))}
@@ -168,16 +168,15 @@ interface ExperienceData {
 const experiencesData: ExperienceData[] = [
   {
     logo: "/logos/monash-logo.png",
-    title: "UI/UX Designer & Researcher",
+    title: "UI Designer & UX Researcher",
     company: "Action Lab, Monash University",
     duration: "Jan 2026 - Present",
     location: "BSD City, Tangerang, Indonesia",
     descriptions: [
-      "Working on two projects: Kita Bersama & Scam Resilient Digital Finance.",
-      "In Kita Bersama project, I do UI design and UX research for a youth-led, youth-centered digital platform aimed at preventing and reducing the mental health impacts of Adverse Childhood Experiences (ACEs) among Indonesian youth (10-24 years) in West Java and East Kalimantan. The project addresses the critical gap in help-seeking behavior (<11%) and rising mental health prevalence by developing a culturally relevant digital solution.",
-      "Conducted iterative, agile-driven design based on co-design workshops with interdisciplinary research group (public health, psychology, physiotherapy) and direct community consultations. Designed a responsive web platform optimized for mobile-first users in Indonesia.",
-      "Architected the user experience for multiple core modules: Peer-Support Forum, Connection to Formal Mental Health Care, Psychosocial and Self-Development Skills, and Gamification Features.",
-      "In Scam Resilient Digital Finance, I execute UI design based on a comprehensive UI/UX design framework to combat digital fraud in Indonesia's socio-technical context. Synthesized findings from a systematic literature review and primary qualitative research (interviews with fraud victims and institutional stakeholders) to address the psychological precision of deception tactics.",
+      "Worked in Kita Bersama project, designing and researching a youth-led, youth-centered digital platform aimed at preventing and reducing the mental health impacts of Adverse Childhood Experiences (ACEs) among Indonesian youth (10-24 years) in West Java and East Kalimantan. The project addresses the critical gap in helpseeking behavior (<11%) and rising mental health prevalence by developing a culturally relevant digital solution.",
+      "Conducted iterative, agile-driven design based on co-design workshops with interdisciplinary research group (public health, psychology, physiotherapy) and direct community consultations. Designed a responsive web platform optimized for mobile-first users in Indonesia. ",
+      "Architected the user experience and interface for multiple core modules resulted from co-design with intended users, collaboration with stakeholder advisory councils (ministry of health, mental health experts, project owners), qualitative research through emic-to-etic translation, and profound on-desk research. ",
+      "Designed Scam Resilient Digital Finance to combat digital fraud in Indonesia's socio-technical context. Synthesized findings from a systematic literature review and primary qualitative research (interviews with fraud victims and institutional stakeholders) to address the psychological precision of deception tactics.",
     ],
     badgeType: "contract",
     badgeText: "Full Time", // Optional override
@@ -189,10 +188,10 @@ const experiencesData: ExperienceData[] = [
     duration: "Oct 2025 - Dec 2025",
     location: "Jakarta, Indonesia",
     descriptions: [
-      "Designed internal application, manpower planning module based on the established design system, existing manual procedures, and enhanced business flow.",
-      "Collaborated in an agile environment with developers, a delivery manager, technical lead, and product owners.",
-      "Gathered requirements of the designated module from various operational sectors of CIMB Niaga, ensuring the system is realistically solving manual administration problems.",
-      "Frequently validating the current design sprint to the design system, working with Senior UI/UX Designers and product owners to state the limitation of the DS.",
+      "Designed Manpower Planning platform as anchor business process in HR Department. Conducted design reviews and workshops under an Agile squad structure.",
+      "Collaborated with UI/UX Designers, Delivery Managers, and Product Owners to understand user requirements and improve design consistency across the Arjuna system.",
+      "Conducted research and benchmarking for Headcount Management system interfaces to propose efficient and user-friendly UI layouts.",
+      "Participated in Agile sprint processes within team of developers and designers for iterative development in large-scale corporate systems.",
     ],
     badgeType: "internship",
     badgeText: "Internship",
@@ -204,9 +203,9 @@ const experiencesData: ExperienceData[] = [
     duration: "Dec 2024 - Feb 2025",
     location: "Jakarta, Indonesia",
     descriptions: [
-      "Built SEO-optimized websites, developed internal tools for social media analysis, and collaborated on internal applications. Improved SEO performance and user experience through research, design, and best practices.",
-      "Collaborating in an agile environment with developers, a delivery manager, technical lead, and product owners.",
-      "Working in CSR project to support their environmental initiatives.",
+      "Engineered strategic transition from conventional B2B business process to digital environment to support both B2B and B2C through crafting brand websites with focus on SEO and accessibility for users. ",
+      "Supported digital marketing needs in enhancing search visibility and customer journey metrics through SEO improvements using Google Search Console, Semrush, Vercel Analytics, and Google Lighthouse. ",
+      "Collaborated with digital marketing teams on market mapping and SEO auditing, while aligning design ideas with graphic designers and third-party partners to deliver a cohesive user experience. ",
     ],
     badgeType: "internship",
     badgeText: "Internship",
@@ -218,8 +217,8 @@ const experiencesData: ExperienceData[] = [
     duration: "Jul 2023 - Aug 2023",
     location: "Jakarta, Indonesia",
     descriptions: [
-      "Designed web and mobile UI for the Telkom Test House Whistleblowing System, focusing on user experience.",
-      "Conducted data analysis for service quality and collaborated on improving organizational standards.",
+      "Developed Telkom Test House Whistleblowing System web and mobile design with design thinking methodology, focusing on user experience and usability. ",
+      "Strengthened service quality benchmarks through rigorous competitive analysis and meticulous data entry validation.",
     ],
     badgeType: "internship",
     badgeText: "Internship",
@@ -232,7 +231,7 @@ function Experiences() {
     <div className="w-full flex flex-col bg-white rounded-t-0 md:rounded-t-[32px] mt-0 base:-mt-32 px-4 md:px-12 xl:px-32 pt-16 md:pt-20 z-20 gap-24">
       <div className="flex flex-col items-start justify-center gap-4 md:gap-8">
         <ColorDots />
-        <h2 className="text-xl md:text-2xl 3xl:text-3xl text-neutral-900 outfit-medium w-full md:w-156.5 3xl:w-180 text-start leading-7">
+        <h2 className="text-xl md:text-2xl 3xl:text-3xl text-neutral-900 body-medium w-full md:w-156.5 3xl:w-180 text-start leading-7">
           Evolving with every challenges and encounter with people in the field,
           I gather valuable experiences that shape my professional journey.
         </h2>

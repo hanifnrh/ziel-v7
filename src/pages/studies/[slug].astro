@@ -5,12 +5,13 @@ export const prerender = false; // Use SSR
 import Navbar from "@/components/pages/navbar";
 import "../../styles/global.css";
 import { MoveLeft } from "lucide-react";
-import HeaderBlue from "@/components/pages/header-blue";
+import HeaderAlternate from "@/components/pages/header-alternate";
 
 import { renderRichText } from "@/lib/richText";
 import { formatDate } from "@/lib/date";
 import { parseTags } from "@/lib/tags";
 import Footer from "@/components/pages/footer";
+import { DotPattern } from "@/components/ui/dot-pattern";
 
 const currentPath = Astro.url.pathname;
 const { slug } = Astro.params;
@@ -96,17 +97,22 @@ if (project.content) {
 <meta name="twitter:card" content="summary_large_image" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link
-  href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap"
-  rel="stylesheet"
-/>
+<link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@1..144,1..1000&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Google+Sans+Code:ital,wght,MONO@0,300..800,1;1,300..800,1&family=Google+Sans+Flex:opsz,wght@1..144,1..1000&display=swap" rel="stylesheet">
 
 <body class="flex flex-col items-center justify-center mt-12 lg:mt-0 z-10 pb-20">
-  <HeaderBlue />
+  <HeaderAlternate />
   <Navbar currentPath={currentPath} />
   <div
     class="w-full flex flex-col px-4 sm:px-12 xl:px-0 max-w-4xl pb-20 gap-4 lg:gap-8"
   >
+<div
+  class="pointer-events-none fixed inset-0 -z-10 text-neutral-300/40
+    [mask-image:linear-gradient(to_bottom,transparent_15%,black_45%)]
+    [-webkit-mask-image:linear-gradient(to_bottom,transparent_15%,black_45%)]"
+>
+  <DotPattern width={16} height={16} cx={2} cy={2} cr={2} client:load />
+</div>
     <div
       class="sticky top-4 z-10 bg-white/80 backdrop-blur-sm rounded-xl p-2"
     >
@@ -114,16 +120,16 @@ if (project.content) {
         <a
           href="/studies"
           rel="canonical"
-          class="flex gap-2 text-neutral-900 outfit-regular text-base px-4 py-4 hover:bg-sky-100 rounded-xl hover:text-sky-600 transition-all w-fit"
+          class="flex gap-2 text-neutral-900 body-code-regular tracking-tight text-base px-4 py-4 hover:bg-sky-100 rounded-xl hover:text-sky-600 transition-all w-fit"
         >
           <MoveLeft />
           Back
         </a>
 
         <div class="flex w-full items-center justify-end gap-2 px-4 py-2">
-          <div class="w-4 h-4 bg-violet-400 rounded-full"></div>
-          <div class="w-4 h-4 bg-emerald-400 rounded-full"></div>
-          <div class="w-12 h-4 bg-sky-400 rounded-full"></div>
+          <div class="w-4 h-4 bg-orange-500 rounded-full"></div>
+          <div class="w-4 h-4 bg-blue-500 rounded-full"></div>
+          <div class="w-12 h-4 bg-purple-500 rounded-full"></div>
         </div>
       </div>
     </div>
@@ -141,22 +147,22 @@ if (project.content) {
 
     <!-- Title and description -->
     <div class="flex flex-col gap-2">
-      <p class="outfit-light text-neutral-700">
+      <p class="body-code-regular text-neutral-700 tracking-tight">
         {formatDate(project.publishDate)}
       </p>
-      <h1 class="text-3xl text-neutral-900 outfit-medium">
+      <h1 class="text-2xl sm:text-3xl text-neutral-900 body-medium">
         {project.title}
       </h1>
-      <p class="outfit-light text-base sm:text-lg text-neutral-800">
+      <p class="body-regular text-sm sm:text-base text-neutral-800">
         {project.description}
       </p>
     </div>
 
     <!-- Tags -->
-    <div class="mt-6 flex flex-wrap gap-2 outfit-light">
+    <div class="mt-6 flex flex-wrap gap-2 body-light">
       {tagsWithColors.map((tag) => (
         <span
-          class={`${tag.border} px-3 py-2 text-sm rounded-full ${tag.text}`}
+          class={`${tag.border} px-3 py-2 text-sm body-code-regular rounded-full border-2 ${tag.text}`}
         >
           {tag.label}
         </span>

@@ -1,69 +1,13 @@
 ---
-import "../styles/global.css";
+import Layout from "../layouts/main.astro";
 import Home from "./home/_home";
+
 const currentPath = Astro.url.pathname;
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
-    <meta name="generator" content={Astro.generator} />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap"
-      rel="stylesheet"
-    />
-    <script
-      defer
-      src="https://cloud.umami.is/script.js"
-      data-website-id="b440f280-3189-40df-b827-f98ffb664eac"></script>
-    <meta
-      property="og:description"
-      content="Purpose-driven product designer."
-    />
-    <meta property="og:title" content="Ziel – Product Designer" />
-    <meta property="og:image" content="https://ziel.work/images/zielwork.png" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="og:url" content="https://ziel.work" />
-    <meta property="og:type" content="website" />
-
-    <!-- Twitter Card (recommended) -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta
-      name="twitter:image"
-      content="https://ziel.work/images/zielwork.png"
-    />
-  </head>
-
-  <body>
-    <main>
-      <!-- Astro will hydrate this React component -->
-      <Home currentPath={currentPath} client:load />
-    </main>
-
-    <!-- LENIS via CDN (THIS IS THE KEY) -->
-    <script type="module">
-      import Lenis from "https://cdn.jsdelivr.net/npm/lenis@1.1.13/+esm";
-
-      const lenis = new Lenis({
-        lerp: 0.08,
-        smoothWheel: true,
-        wheelMultiplier: 2,
-      });
-
-      function raf(time) {
-        lenis.raf(time);
-        requestAnimationFrame(raf);
-      }
-
-      requestAnimationFrame(raf);
-
-      console.log("LENIS RUNNING");
-      document.body.style.outline = "5px solid lime";
-    </script>
-  </body>
-</html>
+<Layout
+  title="Ziel – Product Designer"
+  description="Purpose-driven product designer."
+>
+  <Home currentPath={currentPath} client:load />
+</Layout>

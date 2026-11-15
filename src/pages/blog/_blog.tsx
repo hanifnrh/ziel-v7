@@ -1,6 +1,6 @@
 import BlogContent from "@/components/pages/blog/blog";
 import Footer from "@/components/pages/footer";
-import HeaderBlue from "@/components/pages/header-blue";
+import HeaderAlternate from "@/components/pages/header-alternate";
 import Navbar from "@/components/pages/navbar";
 
 interface BlogProps {
@@ -13,7 +13,7 @@ function Blog({ currentPath }: BlogProps) {
       <div className="w-full flex flex-col justify-center items-center bg-white overflow-hidden shadow-neutral-200 shadow-2xl">
         <Navbar currentPath={currentPath} />
 
-        <HeaderBlue />
+        <HeaderAlternate />
 
         <BlogContent />
 

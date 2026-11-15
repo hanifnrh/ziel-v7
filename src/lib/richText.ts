@@ -57,11 +57,11 @@ export function renderRichText(node: any, renderers: any = {}): string {
 
   switch (type) {
     case "paragraph":
-      return `<p class="text-base sm:text-lg text-neutral-800 text-justify outfit-light tracking-normal leading-6">${children}</p>`;
+      return `<p class="text-sm sm:text-base text-neutral-800 text-justify body-regular tracking-tight leading-6">${children}</p>`;
     case "heading-two":
-      return `<h2 class="inline-flex items-center gap-2 text-xl sm:text-4xl outfit-medium text-neutral-900 mt-6">${children}</h2>`;
+      return `<h2 class="inline-flex items-center gap-2 text-xl sm:text-2xl body-medium text-neutral-900 mt-6">${children}</h2>`;
     case "heading-three":
-      return `<h3 class="flex items-center gap-2 text-lg sm:text-2xl outfit-medium text-neutral-900 mt-6"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+      return `<h3 class="flex items-center gap-2 text-lg sm:text-2xl body-medium text-neutral-900 mt-6"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
   <circle cx="9" cy="9" r="9" fill="url(#paint0_radial_411_32)"/>
   <circle cx="9" cy="9" r="9" fill="url(#paint1_radial_411_32)"/>
   <defs>
@@ -76,20 +76,20 @@ export function renderRichText(node: any, renderers: any = {}): string {
   </defs>
 </svg>${children}</h3>`;
     case "heading-four":
-      return `<h4 class="text-base sm:text-xl outfit-medium text-neutral-800 mt-6">${children}</h4>`;
+      return `<h4 class="text-base sm:text-xl body-medium text-neutral-800 mt-6">${children}</h4>`;
     case "bulleted-list":
       return `<ul class="flex flex-col p-4 gap-3 list-disc pl-5">${children}</ul>`;
     case "numbered-list":
       return `<ol class="flex flex-col p-4 gap-3 list-decimal pl-5">${children}</ol>`;
     case "list-item":
-      return `<li class="text-base sm:text-lg text-neutral-800 text-justify outfit-light tracking-normal leading-6">${children}</li>`;
+      return `<li class="text-sm sm:text-base text-neutral-800 text-justify body-regular tracking-tight leading-6">${children}</li>`;
     case "code":
       return `<code class="bg-neutral-100 dark:bg-neutral-800 px-1 py-0.5 rounded text-sm font-mono">${children}</code>`;
     case "code-block":
       return `<pre class="w-full block bg-neutral-100 dark:bg-neutral-800 p-4 rounded-lg overflow-x-auto text-sm font-mono"><code>${children}</code></pre>`;
     case "link":
     case "a":
-      return `<a href="${node.href}" target="_blank" rel="noopener noreferrer" class="outfit-regular text-blue-600 hover:underline">${children}</a>`;
+      return `<a href="${node.href}" target="_blank" rel="noopener noreferrer" class="body-regular text-blue-600 hover:underline">${children}</a>`;
     case "image":
       return `<div class="w-full flex items-center justify-center"><img src="${node.src}" alt="${node.title || "Image"}" class="w-full object-cover rounded-xl my-6" /></div>`;
     default:

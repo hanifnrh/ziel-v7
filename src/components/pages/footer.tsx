@@ -4,7 +4,7 @@ import { Separator } from "../ui/separator";
 const linkItems = [
   { label: "Analytics", href: "https://cloud.umami.is/share/RX4yihtMS3ZY5OdK" },
   { label: "About", href: "/about" },
-  { label: "Resume", href: "/resume" },
+  { label: "Resume", href: "https://drive.google.com/file/d/1EqTXaWGWUnww93vrzTVQemVzjfPgMbs5/view?usp=sharing" },
   { label: "Guestbook", href: "/guestbook" },
 ];
 
@@ -54,23 +54,23 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row w-full items-start justify-between gap-10 xl:gap-0">
           <div className="flex flex-col w-full lg:w-100 3xl:w-110 items-start gap-4">
             <div className="flex items-center gap-4 w-full">
-              <div className="bg-sky-500 rounded-2xl md:rounded-lg p-3 md:p-2">
-                <img
-                  className="flex-shrink-0"
-                  alt="Frame"
-                  src="/logos/ziel-logo-white.png"
-                />
-              </div>
 
-              <h2 className="font-['Outfit',Helvetica] font-semibold text-neutral-900 text-2xl tracking-[0] leading-[normal]">
-                Ziel
+              <img
+                className="flex-shrink-0"
+                alt="Frame"
+                src="/logos/ziel-logo-dark.svg"
+              />
+
+
+              <h2 className="body-semibold text-neutral-900 text-2xl tracking-[0] leading-[normal]">
+                ziel.work
               </h2>
             </div>
 
             <div className="flex flex-col items-start gap-1.5 w-full">
-              <p className="[font-family:'Outfit',Helvetica] font-light text-neutral-600 text-base 3xl:text-lg tracking-[0] leading-[normal]">
+              <p className="body-regular text-neutral-600 text-base 3xl:text-lg tracking-[0] leading-[normal]">
                 Designing digital experiences with intention, guided by
-                research, empathy, and a deep understanding of real user needs.
+                research, empathy, and a deep understanding of human.
               </p>
             </div>
           </div>
@@ -78,7 +78,7 @@ export default function Footer() {
           <nav className="w-full justify-between lg:justify-end inline-flex items-start gap-12 lg:gap-4">
             <div className="flex flex-col w-full lg:w-52 xl:w-60 items-start gap-2">
               <div className="inline-flex gap-1.5 flex-col items-start">
-                <h3 className="[font-family:'Outfit',Helvetica] font-semibold text-neutral-900 text-base 3xl:text-lg tracking-[0] leading-[normal]">
+                <h3 className="body-semibold text-neutral-900 text-base 3xl:text-lg tracking-[0] leading-[normal]">
                   Links
                 </h3>
               </div>
@@ -88,7 +88,7 @@ export default function Footer() {
                   <li key={index}>
                     <a
                       href={item.href}
-                      className="[font-family:'Outfit',Helvetica] font-light text-neutral-600 text-base tracking-[0] leading-[normal] hover:text-neutral-900 transition-colors"
+                      className="body-regular text-neutral-600 text-base tracking-[0] leading-[normal] hover:text-neutral-900 transition-colors"
                       target={item.label === "Analytics" ? "_blank" : undefined}
                       rel={item.label === "Analytics" ? "noopener noreferrer" : undefined}
                     >
@@ -101,7 +101,7 @@ export default function Footer() {
 
             <div className="flex flex-col w-full lg:w-52 xl:w-60 items-start gap-2">
               <div className="inline-flex gap-1.5 flex-col items-start">
-                <h3 className="[font-family:'Outfit',Helvetica] font-semibold text-neutral-900 text-base 3xl:text-lg tracking-[0] leading-[normal]">
+                <h3 className="body-semibold text-neutral-900 text-base 3xl:text-lg tracking-[0] leading-[normal]">
                   Contacts
                 </h3>
               </div>
@@ -111,7 +111,7 @@ export default function Footer() {
                   <li key={index}>
                     <a
                       href={item.href}
-                      className="[font-family:'Outfit',Helvetica] font-light text-neutral-600 text-base tracking-[0] leading-[normal] hover:text-neutral-900 transition-colors"
+                      className="body-regular text-neutral-600 text-base tracking-[0] leading-[normal] hover:text-neutral-900 transition-colors"
                       target={item.label !== "Email" ? "_blank" : undefined}
                       rel={item.label !== "Email" ? "noopener noreferrer" : undefined}
                     >
@@ -127,9 +127,12 @@ export default function Footer() {
         <Separator className="w-full" />
 
         <div className="flex flex-col md:flex-row gap-4 md:gap-0 items-start justify-between w-full">
-          <p className="[font-family:'Outfit',Helvetica] font-light text-neutral-600 text-base tracking-[0] leading-[normal]">
-            v.6.0 © 2025 Ziel. All rights reserved.
-          </p>
+          <div className="flex flex-col gap-1 body-code-regular text-neutral-600 text-sm tracking-tight leading-[normal]">
+            <p>
+              v.7.0 © 2026 ziel.work All rights reserved.
+            </p>
+            <p className="text-blue-600">Credits of background images: <a href="https://kurzgesagt.org/" className="underline body-code-medium" target="_blank">Kurzgesagt</a></p>
+          </div>
 
           <div className="inline-flex flex-wrap items-start gap-[4px]">
             {versionBadges.map((badge, index) => (
@@ -142,7 +145,7 @@ export default function Footer() {
               >
                 <Badge
                   variant="outline"
-                  className={`inline-flex items-center justify-center gap-2.5 px-3 py-1.5 rounded-xl ${badge.borderColor} ${badge.color} [font-family:'Outfit',Helvetica] font-light text-sm 3xl:text-sm tracking-[0] leading-[normal] hover:bg-transparent`}
+                  className={`inline-flex items-center justify-center gap-2.5 px-3 py-1.5 rounded-xl ${badge.borderColor} ${badge.color} body-code-regular text-xs 3xl:text-sm tracking-tight leading-[normal] hover:bg-transparent`}
                 >
                   {badge.label}
                 </Badge>
@@ -152,7 +155,7 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="bg-[linear-gradient(180deg,rgba(101,175,214,1)_0%,rgba(255,255,255,1)_80%)] [-webkit-background-clip:text] bg-clip-text [-webkit-text-fill-color:transparent] [text-fill-color:transparent] [font-family:'Outfit',Helvetica] font-semibold text-transparent text-[172px] xl:text-[240px] text-center tracking-[0] leading-[normal] -mt-24 xl:-mt-28">
+      <div className="bg-[linear-gradient(180deg,rgba(129,140,248,1)_0%,rgba(255,255,255,1)_80%)] [-webkit-background-clip:text] bg-clip-text [-webkit-text-fill-color:transparent] [text-fill-color:transparent] body-bold font-semibold text-transparent text-[172px] xl:text-[240px] text-center tracking-[0] leading-[normal] -mt-24 xl:-mt-28">
         ZIEL
       </div>
     </footer>

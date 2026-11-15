@@ -5,11 +5,8 @@ import { useEffect, useState } from "react";
 import { formatDate } from "@/lib/date";
 import { parseTags } from "@/lib/tags";
 
-// Types – matches parseTags return value
 interface BlogTag {
   label: string;
-  border: string;
-  text: string;
 }
 
 interface BlogPost {
@@ -39,11 +36,9 @@ const TagBadge = ({ tag }: TagBadgeProps) => (
   <Badge
     variant="outline"
     className={cn(
-      "px-3 py-1.5 rounded-xl border",
-      tag.border,      // Use border class from tag
-      tag.text,        // Use text color class from tag
-      "outfit-light font-light text-sm 3xl:text-sm tracking-[0] leading-[normal]",
-      "bg-transparent hover:bg-transparent"
+      "px-3 py-1.5 rounded-xl ",
+      "text-neutral-800 body-code-regular lowercase text-sm 3xl:text-sm tracking-tight leading-[normal]",
+      "bg-white"
     )}
   >
     {tag.label}
@@ -60,7 +55,7 @@ const BlogCard = ({ post }: BlogCardProps) => {
       href={`/blog/${post.slug}`}
       className="block w-full group hover:scale-[1.02] transition-transform duration-300"
     >
-      <article className="flex flex-col md:flex-row gap-4 bg-white rounded-[32px] p-4 lg:p-6">
+      <article className="flex flex-col md:flex-row gap-4 bg-slate-300/20 backdrop-blur-3xl rounded-3xl lg:rounded-[32px] p-4 lg:p-6">
         <img
           src={post.imageUrl}
           alt={post.title}
@@ -68,13 +63,13 @@ const BlogCard = ({ post }: BlogCardProps) => {
         />
         <div className="flex flex-col items-start justify-between gap-2 md:gap-4 flex-1">
           <div className="flex flex-col items-start justify-center gap-1">
-            <p className="outfit-regular text-neutral-600 text-sm lg:text-base 3xl:text-lg">
+            <p className="body-regular text-neutral-200 text-sm lg:text-base 3xl:text-lg">
               {post.date}
             </p>
-            <h4 className="outfit-semibold text-neutral-900 text-lg lg:text-xl line-clamp-2">
+            <h4 className="body-semibold text-white text-lg lg:text-xl line-clamp-2">
               {post.title}
             </h4>
-            <p className="outfit-regular text-neutral-600 text-sm lg:text-base 3xl:text-lg line-clamp-3">
+            <p className="body-regular text-white text-sm lg:text-base 3xl:text-lg line-clamp-3">
               {post.description}
             </p>
           </div>
@@ -85,8 +80,8 @@ const BlogCard = ({ post }: BlogCardProps) => {
               ))}
             </div>
             <div className="w-full md:w-fit flex justify-end">
-              <span className="w-fit text-end md:text-start text-blue-500 text-sm lg:text-base outfit-medium gap-2 hover:text-blue-600 transition-colors inline-flex items-center">
-                Read More <ArrowRight size={16} className="ml-1" />
+              <span className="w-fit text-end md:text-start text-white text-sm lg:text-base body-medium gap-2 hover:text-blue-600 transition-colors inline-flex items-center">
+                Read <ArrowRight size={16} className="ml-1" />
               </span>
             </div>
           </div>
@@ -162,7 +157,7 @@ function Blogs() {
 
   if (loading) {
     return (
-      <div className="w-full p-4 md:p-6 3xl:p-12">
+      <div className="w-full p-0 md:p-6 3xl:p-12">
         <div className="flex justify-center items-center h-64">
           <div className="text-neutral-500">Loading blogs...</div>
         </div>
@@ -172,7 +167,7 @@ function Blogs() {
 
   if (error) {
     return (
-      <div className="w-full p-4 md:p-6 3xl:p-12">
+      <div className="w-full p-0 md:p-6 3xl:p-12">
         <div className="flex justify-center items-center h-64">
           <div className="text-red-500">Error: {error}</div>
         </div>
@@ -182,7 +177,7 @@ function Blogs() {
 
   if (posts.length === 0) {
     return (
-      <div className="w-full p-4 md:p-6 3xl:p-12">
+      <div className="w-full p-0 md:p-6 3xl:p-12">
         <div className="flex justify-center items-center h-64">
           <div className="text-neutral-500">No blog posts found.</div>
         </div>
@@ -191,21 +186,21 @@ function Blogs() {
   }
 
   return (
-    <div className="w-full p-4 md:p-6 3xl:p-12">
+    <div className="w-full p-0 md:p-6 3xl:p-12">
       <section
         className="
           relative w-full
           flex flex-col items-center gap-6 3xl:gap-12
           px-4 xl:px-24 py-12 xl:py-20
-          bg-[url('/images/blog-bg.png')]
+          bg-[url('/images/baby-star.png')]
           bg-cover bg-center bg-no-repeat
-          rounded-[32px]
+          rounded-none sm:rounded-[32px]
         "
       >
         {/* Header Section */}
         <header className="relative flex flex-col items-center gap-4 w-full xl:w-156.5 z-10">
-          <DotsIndicator />
-          <h3 className="outfit-medium text-2xl 3xl:text-3xl text-white text-center">
+          <img src="/icons/air-balloon.svg" alt="" className="w-16 h-16" />
+          <h3 className="body-medium text-2xl 3xl:text-3xl text-white text-center">
             Thoughts, ideas, and exploration throughout my experience.
           </h3>
         </header>
@@ -222,11 +217,10 @@ function Blogs() {
           <a
             href="/blog"
             className="
-              w-fit bg-violet-500 text-white 
+              w-fit text-white 
               px-4 md:px-6 py-2 md:py-3 
-              rounded-full outfit-regular text-base
-              hover:bg-violet-600 transition-colors
-              focus:outline-none focus:ring-2 focus:ring-violet-500 focus:ring-offset-2
+              rounded-xl body-regular text-base
+              border-3 border-dashed border-white
             "
           >
             See More

@@ -1,0 +1,20 @@
+<svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect x="1.8" y="1.8" width="52.4" height="52.4" rx="26.2" fill="#FB2C36"/>
+<rect x="1.8" y="1.8" width="52.4" height="52.4" rx="26.2" stroke="#FF6467" stroke-width="3.6"/>
+<g clip-path="url(#clip0_2043_1125)">
+<path d="M28 28C28 29.0609 28.4214 30.0783 29.1716 30.8284C29.9217 31.5786 30.9391 32 32 32C33.0609 32 34.0783 31.5786 34.8284 30.8284C35.5786 30.0783 36 29.0609 36 28C36 26.9391 35.5786 25.9217 34.8284 25.1716C34.0783 24.4214 33.0609 24 32 24C30.9391 24 29.9217 24.4214 29.1716 25.1716C28.4214 25.9217 28 26.9391 28 28Z" stroke-width="2.66667" stroke-linecap="round" stroke-linejoin="round" stroke="white"/>
+<path d="M20 20C20 18.9391 20.4214 17.9217 21.1716 17.1716C21.9217 16.4214 22.9391 16 24 16H32C33.0609 16 34.0783 16.4214 34.8284 17.1716C35.5786 17.9217 36 18.9391 36 20C36 21.0609 35.5786 22.0783 34.8284 22.8284C34.0783 23.5786 33.0609 24 32 24H24C22.9391 24 21.9217 23.5786 21.1716 22.8284C20.4214 22.0783 20 21.0609 20 20Z" stroke-width="2.66667" stroke-linecap="round" stroke-linejoin="round" stroke="white"/>
+<path d="M24 24C22.9391 24 21.9217 24.4214 21.1716 25.1716C20.4214 25.9217 20 26.9391 20 28C20 29.0609 20.4214 30.0783 21.1716 30.8284C21.9217 31.5786 22.9391 32 24 32M24 32H28M24 32C23.2089 32 22.4355 32.2346 21.7777 32.6741C21.1199 33.1136 20.6072 33.7384 20.3045 34.4693C20.0017 35.2002 19.9225 36.0044 20.0769 36.7804C20.2312 37.5563 20.6122 38.269 21.1716 38.8284C21.731 39.3878 22.4437 39.7688 23.2196 39.9231C23.9956 40.0775 24.7998 39.9983 25.5307 39.6955C26.2616 39.3928 26.8864 38.8801 27.3259 38.2223C27.7654 37.5645 28 36.7911 28 36V32M28 32V16" stroke-width="2.66667" stroke-linecap="round" stroke-linejoin="round" stroke="white"/>
+</g>
+<rect x="16" y="4" width="13" height="6" rx="3" fill="white" fill-opacity="0.2"/>
+<rect x="34" y="35" width="16" height="8" rx="4" fill="white" fill-opacity="0.4"/>
+<rect x="9" y="7" width="14" height="7" rx="3.5" fill="white" fill-opacity="0.4"/>
+<rect x="28" y="39" width="14" height="8" rx="4" fill="white" fill-opacity="0.4"/>
+<rect x="3" y="35" width="13" height="8" rx="4" fill="white" fill-opacity="0.2"/>
+<rect x="40" y="12" width="13" height="8" rx="4" fill="white" fill-opacity="0.2"/>
+<defs>
+<clipPath id="clip0_2043_1125">
+<rect width="32" height="32" fill="white" transform="translate(12 12)"/>
+</clipPath>
+</defs>
+</svg>

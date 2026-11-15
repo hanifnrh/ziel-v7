@@ -41,11 +41,9 @@ const TagBadge = ({ tag }: TagBadgeProps) => (
   <Badge
     variant="outline"
     className={cn(
-      "px-3 py-1.5 rounded-xl border",
-      tag.border,
-      tag.text,
-      "outfit-light font-light text-sm 3xl:text-sm tracking-[0] leading-[normal]",
-      "bg-transparent hover:bg-transparent",
+      "px-3 py-1.5 rounded-xl",
+      "text-neutral-800 body-code-regular lowercase text-sm 3xl:text-sm tracking-tight leading-[normal]",
+      "bg-white",
     )}
   >
     {tag.label}
@@ -56,50 +54,45 @@ interface BlogCardProps {
   post: BlogPost;
 }
 
-const BlogCard = ({ post }: BlogCardProps) => {
-  return (
-    <a
-      href={post.readMoreUrl}
-      className="block w-full group hover:scale-[1.02] transition-transform duration-300 cursor-pointer"
-    >
-      <article className="flex flex-col md:flex-row gap-4 bg-white rounded-[32px] p-4 lg:p-6">
-        <img
-          src={post.imageUrl}
-          alt={post.title}
-          className="w-full md:w-1/3 lg:w-75 lg:h-[166px] rounded-[18px] object-cover"
-        />
-        <div className="flex flex-col items-start justify-between gap-2 md:gap-4 flex-1">
-          <div className="flex flex-col items-start justify-center gap-1">
-            <p className="outfit-regular text-neutral-600 text-sm lg:text-base 3xl:text-lg">
-              {post.date}
-            </p>
-            <h4 className="outfit-semibold text-neutral-900 text-lg lg:text-xl line-clamp-2">
-              {post.title}
-            </h4>
-            <p className="outfit-regular text-neutral-600 text-sm lg:text-base 3xl:text-lg line-clamp-3">
-              {post.description}
-            </p>
+const BlogCard = ({ post }: BlogCardProps) => (
+  <a
+    href={post.readMoreUrl}
+    className="block w-full group hover:scale-[1.02] transition-transform duration-300"
+  >
+    <article className="flex flex-col md:flex-row gap-4 bg-slate-300/20 backdrop-blur-3xl rounded-3xl lg:rounded-[32px] p-4 lg:p-6">
+      <img
+        src={post.imageUrl}
+        alt={post.title}
+        className="w-full md:w-1/3 lg:w-75 lg:h-[166px] rounded-[18px] object-cover"
+      />
+      <div className="flex flex-col items-start justify-between gap-2 md:gap-4 flex-1">
+        <div className="flex flex-col items-start justify-center gap-1">
+          <p className="body-regular text-neutral-200 text-sm lg:text-base 3xl:text-lg">
+            {post.date}
+          </p>
+          <h4 className="body-semibold text-white text-lg lg:text-xl line-clamp-2">
+            {post.title}
+          </h4>
+          <p className="body-regular text-white text-sm lg:text-base 3xl:text-lg line-clamp-3">
+            {post.description}
+          </p>
+        </div>
+        <div className="w-full flex flex-col md:flex-row items-start md:items-center justify-between gap-4 md:gap-0">
+          <div className="flex items-center gap-2 flex-wrap text-sm">
+            {post.tags.map((tag, index) => (
+              <TagBadge key={`${post.id}-${tag.label}-${index}`} tag={tag} />
+            ))}
           </div>
-          <div className="w-full flex flex-col md:flex-row items-start md:items-center justify-between gap-4 md:gap-0">
-            <div className="flex items-center gap-2 flex-wrap">
-              {post.tags.map((tag, index) => (
-                <TagBadge key={`${post.id}-${tag.label}-${index}`} tag={tag} />
-              ))}
-            </div>
-            <div className="w-full md:w-fit flex justify-end">
-              <a
-                href={post.readMoreUrl}
-                className="w-fit text-end md:text-start text-blue-500 text-sm lg:text-base outfit-medium gap-2 hover:text-blue-600 transition-colors inline-flex items-center"
-              >
-                Read More <ArrowRight size={16} className="ml-1" />
-              </a>
-            </div>
+          <div className="w-full md:w-fit flex justify-end">
+            <span className="w-fit text-end md:text-start text-white text-sm lg:text-base body-medium gap-2 hover:text-blue-600 transition-colors inline-flex items-center">
+              Read <ArrowRight size={16} className="ml-1" />
+            </span>
           </div>
         </div>
-      </article>
-    </a>
-  );
-};
+      </div>
+    </article>
+  </a>
+);
 
 interface PaginationProps {
   currentPage: number;
@@ -139,7 +132,7 @@ const Pagination = ({
           key={page}
           onClick={() => onPageChange(page)}
           className={cn(
-            "flex items-center justify-center w-10 h-10 rounded-full text-base outfit-regular",
+            "flex items-center justify-center w-10 h-10 rounded-full text-base body-regular",
             currentPage === page
               ? "bg-violet-500 text-white"
               : "text-white hover:bg-neutral-50",
@@ -253,7 +246,7 @@ function BlogContent() {
 
   if (isLoading) {
     return (
-      <div className="w-full p-4 md:p-6 3xl:p-12 bg-white">
+      <div className="w-full p-0 md:p-6 3xl:p-12 bg-white">
         <div className="flex justify-center items-center h-64">
           <Loader />
         </div>
@@ -263,7 +256,7 @@ function BlogContent() {
 
   if (blogs.length === 0) {
     return (
-      <div className="w-full p-4 md:p-6 3xl:p-12 bg-white">
+      <div className="w-full p-0 md:p-6 3xl:p-12 bg-white">
         <div className="flex justify-center items-center h-64">
           <div className="text-neutral-500">No blog posts found.</div>
         </div>
@@ -272,24 +265,24 @@ function BlogContent() {
   }
 
   return (
-    <div className="w-full p-4 md:p-6 3xl:p-12 bg-white">
+    <div className="w-full p-0 md:p-6 3xl:p-12 bg-white">
       <section
         className="
           relative w-full
           flex flex-col items-center gap-6 3xl:gap-12
           px-4 xl:px-24 py-12 xl:py-20
-          bg-[url('/images/blog-bg.png')]
+          bg-[url('/images/baby-star.png')]
           bg-cover bg-center bg-no-repeat
-          rounded-[24px]
+          rounded-none sm:rounded-[24px]
         "
       >
         {/* Header Section */}
         <header className="relative flex flex-col items-center gap-4 w-full xl:w-156.5 z-10">
-          <h1 className="w-80 xl:w-126 3xl:w-150 text-white outfit-semibold text-3xl xl:text-[64px] 3xl:text-7xl text-center tracking-[0] leading-normal xl:leading-18 3xl:leading-normal z-20">
+          <h1 className="w-80 xl:w-126 3xl:w-150 text-white body-semibold text-3xl xl:text-[64px] 3xl:text-7xl text-center tracking-[0] leading-normal xl:leading-18 3xl:leading-normal z-20">
             Blogs
           </h1>
           <DotsIndicator />
-          <h3 className="text-xl md:text-2xl 3xl:text-3xl text-white outfit-medium w-full xl:w-156.5 3xl:w-180 text-center leading-7">
+          <h3 className="text-xl md:text-2xl 3xl:text-3xl text-white body-medium w-full xl:w-156.5 3xl:w-180 text-center leading-7">
             Thoughts, ideas, and exploration throughout my experience as
             full-time curious learner.
           </h3>
@@ -312,7 +305,7 @@ function BlogContent() {
             />
 
             {/* Page Info */}
-            <div className="text-center text-white outfit-regular text-sm">
+            <div className="text-center text-white body-regular text-sm">
               Showing{" "}
               {Math.min((currentPage - 1) * ITEMS_PER_PAGE + 1, blogs.length)}-
               {Math.min(currentPage * ITEMS_PER_PAGE, blogs.length)} of{" "}

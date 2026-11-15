@@ -184,7 +184,7 @@ export default function GuestbookEntries() {
           <button onClick={() => signIn("github")}>
             <div className="group relative bg-white px-6 py-4 flex items-center gap-2 w-fit border-3 border-neutral-200 rounded-[24px] overflow-hidden cursor-pointer">
               <div className="absolute inset-0 bg-linear-to-t from-neutral-100 to-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-              <span className="outfit-medium text-neutral-800 relative z-10 flex items-center gap-2">
+              <span className="body-medium text-neutral-800 relative z-10 flex items-center gap-2">
                 Sign in with GitHub
                 <img src="/logos/github-logo.png" alt="" className="w-5 h-5" />
               </span>
@@ -193,7 +193,7 @@ export default function GuestbookEntries() {
           <button onClick={() => signIn("google")}>
             <div className="group relative bg-white px-6 py-4 flex items-center gap-2 w-fit border-3 border-sky-200 rounded-[24px] overflow-hidden cursor-pointer">
               <div className="absolute inset-0 bg-linear-to-t from-sky-100 to-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-              <span className="outfit-medium text-blue-500 relative z-10 flex items-center gap-2">
+              <span className="body-medium text-blue-500 relative z-10 flex items-center gap-2">
                 Sign in with Google
                 <img src="/logos/google-logo.png" alt="" className="w-5 h-5" />
               </span>
@@ -215,7 +215,7 @@ export default function GuestbookEntries() {
                 className="w-4.5 h-4.5"
               />
             )}
-            <span className="outfit-medium text-neutral-900 flex items-center gap-2">
+            <span className="body-medium text-neutral-900 flex items-center gap-2">
               Hi, {user.user_metadata.full_name || user.email}
             </span>
           </div>
@@ -224,20 +224,20 @@ export default function GuestbookEntries() {
             onChange={(e) => setNewMessage(e.target.value)}
             placeholder="Leave a message..."
             rows={3}
-            className="w-full p-3 rounded-xl bg-neutral-100 text-neutral-600 placeholder:text-neutral-600 placeholder:outfit-light resize-none focus-visible:outline-none"
+            className="w-full p-3 rounded-xl bg-neutral-100 text-neutral-600 placeholder:text-neutral-600 placeholder:body-light resize-none focus-visible:outline-none"
             required
           />
           <div className="flex w-full justify-between">
             <button
               onClick={signOut}
-              className="px-6 py-2 bg-white text-red-600 outfit-regular hover:bg-linear-to-t hover:shadow-lg active:scale-[0.98] border-4 border-red-200 rounded-2xl disabled:opacity-50 transition-all cursor-pointer"
+              className="px-6 py-2 bg-white text-red-600 body-regular hover:bg-linear-to-t hover:shadow-lg active:scale-[0.98] border-4 border-red-200 rounded-2xl disabled:opacity-50 transition-all cursor-pointer"
             >
               Sign Out
             </button>
             <button
               type="submit"
               disabled={isSubmitting}
-              className="px-6 py-2 bg-linear-to-t from-blue-600 to-blue-400 text-white outfit-regular rounded-2xl border-4 border-blue-200 disabled:opacity-50 transition-all duration-200 hover:shadow-lg active:scale-[0.98] cursor-pointer"
+              className="px-6 py-2 bg-linear-to-t from-blue-600 to-blue-400 text-white body-regular rounded-2xl border-4 border-blue-200 disabled:opacity-50 transition-all duration-200 hover:shadow-lg active:scale-[0.98] cursor-pointer"
             >
               {isSubmitting ? "Posting..." : "Sign Guestbook"}
             </button>
@@ -264,13 +264,13 @@ export default function GuestbookEntries() {
                     alt=""
                   />
                   <div>
-                    <h4 className="outfit-regular">{entry.user_name}</h4>
-                    <p className="text-sm outfit-light text-neutral-100">
+                    <h4 className="body-regular">{entry.user_name}</h4>
+                    <p className="text-sm body-light text-neutral-100">
                       {timeAgo(entry.created_at)}
                     </p>
                   </div>
                 </div>
-                <p className="text-base outfit-light leading-relaxed">
+                <p className="text-base body-light leading-relaxed">
                   {entry.content}
                 </p>
               </div>
@@ -291,7 +291,7 @@ export default function GuestbookEntries() {
                 <button
                   key={pageNum}
                   onClick={() => goToPage(pageNum)}
-                  className={`w-12 h-12 flex items-center justify-center rounded-md transition cursor-pointer outfit-regular ${
+                  className={`w-12 h-12 flex items-center justify-center rounded-md transition cursor-pointer body-regular ${
                     pageNum === currentPage
                       ? "bg-linear-to-t from-blue-600 to-blue-400 text-white"
                       : "text-neutral-600"

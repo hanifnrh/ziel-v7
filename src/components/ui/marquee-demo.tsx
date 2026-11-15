@@ -2,10 +2,10 @@ import { cn } from "@/lib/utils";
 import { Marquee } from "./marquee";
 
 const reviews = [
-  { img: "/logos/figma-logo.png" },
-  { img: "/logos/tailwind-logo.png" },
-  { img: "/logos/maze-logo.png" },
-  { img: "/logos/notion-logo.png" },
+  { img: "/icons/figma-icon.svg" },
+  { img: "/icons/tailwind-icon.svg" },
+  { img: "/icons/notion-icon.svg" },
+  { img: "/icons/vscode-icon.svg" },
 ];
 
 const firstRow = reviews.slice(0, reviews.length / 2);
@@ -14,16 +14,11 @@ const ReviewCard = ({ img }: { img: string }) => {
   return (
     <figure
       className={cn(
-        "relative h-full w-fit cursor-pointer overflow-hidden rounded-full border p-2 flex items-center justify-center",
-        // light styles
-        "border-gray-950/[.1] bg-gradient-to-t from-[#F3F3F3] to-white hover:bg-gray-950/[.05]",
-        // dark styles
-        "dark:border-gray-50/[.1] dark:bg-gray-50/[.10] dark:hover:bg-gray-50/[.15]"
+        "relative h-full w-fit cursor-pointer overflow-hidden rounded-full border flex items-center justify-center",
       )}
     >
-      <div className="flex flex-row items-center gap-2 justify-center">
-        <img className="rounded-full" width="32" height="32" alt="" src={img} />
-      </div>
+      {/* Reduced size from 60x60 to 40x40 (48x48 on md) */}
+      <img className="rounded-full size-10 md:size-12" alt="" src={img} />
     </figure>
   );
 };
