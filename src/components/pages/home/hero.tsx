@@ -30,11 +30,11 @@ const tools = [
 
 const Hero = () => {
   return (
-    <div className="w-full">
+    <div className="relative w-full">
       <img
         src="/images/asteroids.png"
         alt=""
-        className="w-full h-210 3xl:h-240 absolute top-0 left-0 inset-0 object-cover brightness-80"
+        className="absolute top-0 left-0 w-full h-210 3xl:h-240 object-cover brightness-80"
       />
       {/* Hero Section */}
       <HeaderWhite />
@@ -50,13 +50,12 @@ const Hero = () => {
           {/* Upper Card */}
           <div className="flex w-full xs:col-span-2 md:col-span-12 bg-white rounded-[24px] p-4 gap-4">
             <img
-              src="/logos/ziel-logo-alternate.svg"
+              src="/logos/ziel-logo-dark.svg"
               alt=""
               className="w-10 h-auto"
             />
-            <p className="body-regular text-neutral-800 leading-6 text-base 3xl:text-lg">
-              Interface designer and UX researcher immersed in user ecosystems
-              to decode deep behavioral patterns, bridging
+            <p className="body-regular text-neutral-800 leading-6 text-sm lg:text-base">
+              Adaptive interface designer and UX researcher who bridges
               strategy with genuine human empathy.
             </p>
           </div>

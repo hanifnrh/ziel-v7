@@ -56,11 +56,11 @@ function AboutSection() {
           <img
             src="/images/telescopio-hubble.jpg"
             alt=""
-            className="w-full h-240 absolute top-0 left-0 inset-0 object-cover"
+            className="w-screen h-full absolute top-0 left-0 inset-0 object-cover"
           />
 
           <div className="w-full justify-start grid grid-cols-2 xs:grid-cols-2 md:grid-cols-12 lg:w-220 3xl:w-240 gap-4 z-20">
-            <h1 className="col-span-2 md:col-span-12 text-start w-full bg-[linear-gradient(180deg,rgba(255,255,255,1)_70%,rgba(101,175,214,1)_100%)] [-webkit-background-clip:text] bg-clip-text [-webkit-text-fill-color:transparent] [text-fill-color:transparent] body-semibold text-transparent text-3xl xl:text-[56px] tracking-[0] leading-normal xl:leading-18 3xl:leading-normal z-20 py-8 sm:py-0">
+            <h1 className="col-span-2 md:col-span-12 text-start w-full bg-[linear-gradient(180deg,rgba(255,255,255,1)_70%,rgba(101,175,214,1)_100%)] [-webkit-background-clip:text] bg-clip-text [-webkit-text-fill-color:transparent] [text-fill-color:transparent] body-semibold text-transparent text-3xl xl:text-[56px] tracking-[0] leading-normal xl:leading-18 3xl:leading-normal z-20 py-4 sm:py-0">
               About Me
             </h1>
 
@@ -71,7 +71,7 @@ function AboutSection() {
                   Who Am I
                 </h3>
               </div>
-              <p className="body-regular text-neutral-800 leading-6 text-base 3xl:text-lg">
+              <p className="body-regular text-neutral-800 leading-6 text-sm lg:text-base">
                 I&rsquo;m Hanif, a design engineer based in Bekasi, Indonesia. I
                 hold a degree in Computer Engineering from Universitas Diponegoro.
                 I have experience designing interfaces across various fields,
@@ -97,7 +97,7 @@ function AboutSection() {
                   Socials
                 </h3>
               </div>
-              <p className="body-light text-neutral-600 leading-6 text-base 3xl:text-lg">
+              <p className="body-light text-neutral-600 leading-6 text-sm lg:text-base">
                 Works, updates, and all.
               </p>
             </div>
