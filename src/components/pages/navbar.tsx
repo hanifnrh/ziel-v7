@@ -1,5 +1,6 @@
 import { Home, Info, BookText, Image, FileText, type LucideIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { ScrambleText } from "@/components/ui/scramble-text";
 
 interface NavbarProps {
   currentPath: string;
@@ -20,7 +21,7 @@ const navItems: NavItem[] = [
 ];
 
 const baseItem =
-  "inline-flex items-center gap-2 justify-center px-3 md:px-4 py-3 body-code-regular uppercase tracking-tight text-sm rounded-full transition-colors";
+  "inline-flex items-center gap-2 justify-center px-3 md:px-4 py-3 body-code-medium uppercase text-sm rounded-full transition-colors";
 const inactiveItem = "text-white hover:text-white/80";
 const activeItem =
   "bg-white text-neutral-900 px-4 md:px-6 shadow-black/25 shadow-lg";
@@ -45,7 +46,10 @@ function Navbar({ currentPath }: NavbarProps) {
               className={cn(baseItem, active ? activeItem : inactiveItem)}
             >
               <Icon className="md:hidden w-5 h-5" />
-              <span className="hidden md:inline">{label}</span>
+              <ScrambleText
+                text={label}
+                className="hidden md:inline"
+              />
             </a>
           );
         })}

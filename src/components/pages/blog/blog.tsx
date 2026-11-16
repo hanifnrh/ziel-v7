@@ -41,8 +41,10 @@ const TagBadge = ({ tag }: TagBadgeProps) => (
   <Badge
     variant="outline"
     className={cn(
+      "font-medium",
+      "body-code-light",
       "px-3 py-1.5 rounded-xl",
-      "text-neutral-800 body-code-regular lowercase text-sm 3xl:text-sm tracking-tight leading-[normal]",
+      "text-neutral-800 lowercase text-xs 3xl:text-sm tracking-tight leading-[normal]",
       "bg-white",
     )}
   >
@@ -78,7 +80,7 @@ const BlogCard = ({ post }: BlogCardProps) => (
           </p>
         </div>
         <div className="w-full flex flex-col md:flex-row items-start md:items-center justify-between gap-4 md:gap-0">
-          <div className="flex items-center gap-2 flex-wrap text-sm">
+          <div className="flex items-center gap-2 flex-wrap text-sm body-code-light">
             {post.tags.map((tag, index) => (
               <TagBadge key={`${post.id}-${tag.label}-${index}`} tag={tag} />
             ))}
@@ -278,11 +280,11 @@ function BlogContent() {
       >
         {/* Header Section */}
         <header className="relative flex flex-col items-center gap-4 w-full xl:w-156.5 z-10">
-          <h1 className="w-80 xl:w-126 3xl:w-150 text-white body-semibold text-3xl xl:text-[64px] 3xl:text-7xl text-center tracking-[0] leading-normal xl:leading-18 3xl:leading-normal z-20">
-            Blogs
-          </h1>
+           <h1 className="body-semibold text-white text-3xl xl:text-5xl text-center tracking-[0] leading-normal xl:leading-18 3xl:leading-normal z-20">
+      Blogs
+    </h1>
           <DotsIndicator />
-          <h3 className="text-xl md:text-2xl 3xl:text-3xl text-white body-medium w-full xl:w-156.5 3xl:w-180 text-center leading-7">
+          <h3 className="text-base lg:text-xl text-white body-regular w-full xl:w-156.5 3xl:w-180 text-center leading-7">
             Thoughts, ideas, and exploration throughout my experience as
             full-time curious learner.
           </h3>
@@ -305,7 +307,7 @@ function BlogContent() {
             />
 
             {/* Page Info */}
-            <div className="text-center text-white body-regular text-sm">
+            <div className="text-center text-white body-medium text-sm">
               Showing{" "}
               {Math.min((currentPage - 1) * ITEMS_PER_PAGE + 1, blogs.length)}-
               {Math.min(currentPage * ITEMS_PER_PAGE, blogs.length)} of{" "}

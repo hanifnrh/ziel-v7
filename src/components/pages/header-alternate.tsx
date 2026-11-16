@@ -1,5 +1,4 @@
-import { Download } from "lucide-react";
-import React from "react";
+import { IconHandClick, IconPaperclip } from "@tabler/icons-react";
 
 function HeaderAlternate() {
   return (
@@ -8,20 +7,17 @@ function HeaderAlternate() {
         href="https://drive.google.com/file/d/1EqTXaWGWUnww93vrzTVQemVzjfPgMbs5/view?usp=sharing"
         rel="canonical"
         target="_blank"
-        className="flex items-center text-neutral-800 text-sm xl:text-base body-code-medium gap-2 rounded-[12px] px-2 py-2 cursor-pointer"
+        aria-label="Download CV"
+        className="flex items-center text-purple-600 text-sm xl:text-base body-code-medium uppercase gap-2 bg-white rounded-lg px-2.5 py-2.5 md:px-4 md:py-2 xl:py-4 cursor-pointer border-4 border-purple-400"
       >
-        <div className="text-blue-500 bg-white border-3 border-blue-300 p-3 rounded-lg flex items-center justify-center">
-          <Download size={18} />
-        </div>
-        RESUME
+        <IconPaperclip size={18} />
+        <span className="hidden md:inline">RESUME</span>
       </a>
 
-      <a
-       href="/"
-       className="absolute left-1/2 -translate-x-1/2">
+      <a href="/" className="absolute left-1/2 -translate-x-1/2">
         <img
           src="/logos/ziel-logo-dark.svg"
-          alt=""
+          alt="Ziel home"
           className="w-8 xl:w-full h-auto"
         />
       </a>
@@ -30,9 +26,11 @@ function HeaderAlternate() {
         href="mailto:nurrahmathaniff@gmail.com"
         rel="canonical"
         target="_blank"
-        className="flex items-center text-white text-sm xl:text-base body-code-medium uppercase gap-2 bg-purple-600 rounded-lg px-4 py-2 xl:py-4 cursor-pointer border-4 border-purple-400"
+        aria-label="Get in touch"
+        className="flex items-center text-white text-sm xl:text-base body-code-medium uppercase gap-2 bg-purple-600 rounded-lg px-2.5 py-2.5 md:px-4 md:py-2 xl:py-4 cursor-pointer border-4 border-purple-400"
       >
-        Get in Touch
+        <IconHandClick size={18} stroke={2} className="md:hidden" />
+        <span className="hidden md:inline">Get in Touch</span>
       </a>
     </div>
   );

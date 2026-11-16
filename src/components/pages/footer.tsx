@@ -16,41 +16,47 @@ const contactItems = [
 
 const versionBadges = [
   {
-    label: "Version 1.0",
+    label: "v 1.0",
     color: "text-blue-600",
-    borderColor: "border-[#dbeafe]",
+    borderColor: "border-blue-300",
     href: "https://ziel-orcin.vercel.app/",
   },
   {
-    label: "Version 2.0",
+    label: "v 2.0",
     color: "text-violet-600",
-    borderColor: "border-[#ddd6ff]",
+    borderColor: "border-violet-300",
     href: "https://zielporto.vercel.app/",
   },
   {
-    label: "Version 3.0",
+    label: "v 3.0",
     color: "text-emerald-600",
-    borderColor: "border-[#a4f4cf]",
+    borderColor: "border-emerald-300",
     href: "https://dailyziel.vercel.app/",
   },
   {
-    label: "Version 4.0",
+    label: "v 4.0",
     color: "text-red-600",
-    borderColor: "border-[#ffc9c9]",
+    borderColor: "border-red-300",
     href: "https://ziel-v4.vercel.app/",
   },
   {
-    label: "Version 5.0",
+    label: "v 5.0",
     color: "text-yellow-600",
-    borderColor: "border-[#fee685]",
+    borderColor: "border-yellow-300",
     href: "https://ziel-v5.vercel.app/",
+  },
+  {
+    label: "v 6.0",
+    color: "text-sky-600",
+    borderColor: "border-sky-300",
+    href: "https://ziel-v6.netlify.app/",
   },
 ];
 
 export default function Footer() {
   return (
     <footer className="relative w-full p-4 md:p-6 3xl:p-12">
-      <div className="flex flex-col w-full items-start gap-6 p-4 md:p-6 lg:p-8 bg-[#ffffff] rounded-[32px] border border-solid border-[#e5e5e5] shadow-[0px_20px_30px_#ebebeb80] backdrop-blur-[20px] backdrop-brightness-[100%] [-webkit-backdrop-filter:blur(20px)_brightness(100%)]">
+      <div className="flex flex-col w-full items-start gap-6 p-6 lg:p-8 bg-[#ffffff] rounded-2xl sm:rounded-[32px] border border-solid border-[#e5e5e5] shadow-[0px_20px_30px_#ebebeb80] backdrop-blur-[20px] backdrop-brightness-[100%] [-webkit-backdrop-filter:blur(20px)_brightness(100%)]">
         <div className="flex flex-col md:flex-row w-full items-start justify-between gap-10 xl:gap-0">
           <div className="flex flex-col w-full lg:w-100 3xl:w-110 items-start gap-4">
             <div className="flex items-center gap-4 w-full">
@@ -128,13 +134,20 @@ export default function Footer() {
 
         <div className="flex flex-col md:flex-row gap-4 md:gap-0 items-start justify-between w-full">
           <div className="flex flex-col gap-1 body-code-regular text-neutral-600 text-sm tracking-tight leading-[normal]">
-            <p>
-              v.7.0 © 2026 ziel.work All rights reserved.
+            <p>v.7.0 © 2026 ziel.work All rights reserved.</p>
+            <p className="text-blue-600">
+              Credits of background images:{" "}
+              <a href="https://kurzgesagt.org/" className="underline body-code-medium" target="_blank">
+                Kurzgesagt
+              </a>
             </p>
-            <p className="text-blue-600">Credits of background images: <a href="https://kurzgesagt.org/" className="underline body-code-medium" target="_blank">Kurzgesagt</a></p>
           </div>
 
-          <div className="inline-flex flex-wrap items-start gap-[4px]">
+          {/* ← Mobile-only separator between copyrights and versions */}
+          <Separator className="w-full md:hidden" />
+
+          <div className="inline-flex flex-wrap items-center gap-2">
+            <p className="body-code-regular text-sm mr-2 text-blue-600 tracking-tight">Versions</p>
             {versionBadges.map((badge, index) => (
               <a
                 key={index}
@@ -145,7 +158,7 @@ export default function Footer() {
               >
                 <Badge
                   variant="outline"
-                  className={`inline-flex items-center justify-center gap-2.5 px-3 py-1.5 rounded-xl ${badge.borderColor} ${badge.color} body-code-regular text-xs 3xl:text-sm tracking-tight leading-[normal] hover:bg-transparent`}
+                  className={`inline-flex items-center justify-center gap-2.5 px-3 py-1.5 rounded-xl border-2 ${badge.borderColor} ${badge.color} body-code-regular text-xs 3xl:text-sm tracking-tight leading-[normal] hover:bg-transparent`}
                 >
                   {badge.label}
                 </Badge>

@@ -244,7 +244,7 @@ function CaseStudiesPreview() {
 
   if (isLoading) {
     return (
-      <section className="w-full flex flex-col px-4 md:px-12 xl:px-32 py-20 bg-blue-50 rounded-4xl">
+      <section className="w-full flex flex-col px-4 md:px-12 xl:px-32 py-20 bg-blue-100 rounded-4xl">
         <SectionHeader
           title="Case Studies"
           description="Studies and works I have done in past few years. From segmented target into wide-range of users, I crafted designs fulfilling their needs."
@@ -265,7 +265,7 @@ function CaseStudiesPreview() {
 
   if (error) {
     return (
-      <section className="w-full flex flex-col px-4 md:px-12 xl:px-32 py-20 bg-blue-50 rounded-4xl">
+      <section className="w-full flex flex-col px-4 md:px-12 xl:px-32 py-20 bg-blue-100 rounded-4xl">
         <SectionHeader
           title="Case Studies"
           description="Studies and works I have done in past few years. From segmented target into wide-range of users, I crafted designs fulfilling their needs."
@@ -278,7 +278,7 @@ function CaseStudiesPreview() {
 
   if (caseStudies.length === 0) {
     return (
-      <section className="w-full flex flex-col px-4 md:px-12 xl:px-32 py-20 bg-blue-50 rounded-4xl">
+      <section className="w-full flex flex-col px-4 md:px-12 xl:px-32 py-20 bg-blue-100 rounded-4xl">
         <SectionHeader
           title="Case Studies"
           description="Studies and works I have done in past few years."
@@ -290,7 +290,7 @@ function CaseStudiesPreview() {
   }
 
   return (
-    <section className="w-full flex flex-col px-4 md:px-12 xl:px-32 py-20 bg-blue-50 rounded-4xl">
+    <section className="w-full flex flex-col px-4 md:px-12 xl:px-32 py-20 bg-blue-100 rounded-4xl">
       <SectionHeader
         title="Case Studies"
         description="Studies and works I have done in past few years. From segmented target into wide-range of users, I crafted designs fulfilling their needs."

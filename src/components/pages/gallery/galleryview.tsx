@@ -39,7 +39,7 @@ const ColorDots = () => (
 
 const SectionHeader = () => (
   <div className="flex flex-col items-center justify-center gap-4 md:gap-8">
-    <h1 className="bg-linear-to-b from-indigo-700 to-sky-200 bg-clip-text [-webkit-text-fill-color:transparent] [text-fill-color:transparent] body-semibold text-transparent text-3xl xl:text-5xl text-center tracking-[0] leading-normal xl:leading-18 3xl:leading-normal z-20">
+    <h1 className="bg-linear-to-b from-indigo-700 to-blue-400 bg-clip-text [-webkit-text-fill-color:transparent] [text-fill-color:transparent] body-semibold text-transparent text-3xl xl:text-5xl text-center tracking-[0] leading-normal xl:leading-18 3xl:leading-normal z-20">
       Gallery
     </h1>
     <ColorDots />

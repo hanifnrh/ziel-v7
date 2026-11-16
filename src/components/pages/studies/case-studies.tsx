@@ -180,11 +180,15 @@ const CustomPagination = ({
 };
 
 const SectionHeader = () => (
-  <div className="px-4 md:px-12 xl:px-24 flex flex-col items-center justify-center gap-3">
-    <h1 className="bg-linear-to-b from-indigo-700 to-sky-200 bg-clip-text [-webkit-text-fill-color:transparent] [text-fill-color:transparent] body-semibold text-transparent text-3xl xl:text-5xl text-center tracking-[0] leading-normal xl:leading-18 3xl:leading-normal z-20">
+  <div className="px-4 md:px-12 xl:px-24 flex flex-col items-center justify-center gap-3 max-w-4xl mx-auto">
+    <h1 className="bg-linear-to-b from-indigo-700 to-blue-400 bg-clip-text [-webkit-text-fill-color:transparent] [text-fill-color:transparent] body-semibold text-transparent text-3xl xl:text-5xl text-center tracking-[0] leading-normal xl:leading-18 3xl:leading-normal z-20">
       Case Studies
     </h1>
     <ColorDots />
+    <p className="body-regular tracking-tight text-neutral-800 text-base lg:text-xl text-center leading-6 mt-2">
+      Studies and works I have done in past few years. From segmented target
+      into wide-range of users, I crafted designs fulfilling their needs.
+    </p>
   </div>
 );
 
@@ -282,7 +286,7 @@ function CaseStudies() {
       <SectionHeader />
 
       {/* Full-bleed blue section: bg is on the outer div, padding on the inner */}
-      <div className="w-full bg-blue-50 py-10 rounded-4xl">
+      <div className="w-full bg-blue-100 py-10 rounded-4xl">
         <div className="px-4 md:px-12 xl:px-24 flex flex-col gap-4">
           {isLoading && (
             <div className="flex justify-center items-center h-64">
@@ -318,7 +322,7 @@ function CaseStudies() {
                 />
               )}
 
-              <div className="text-center text-neutral-600 body-regular text-sm">
+              <div className="text-center text-neutral-800 body-medium text-sm">
                 Showing {Math.min(startIndex + 1, caseStudies.length)}–
                 {Math.min(endIndex, caseStudies.length)} of{" "}
                 {caseStudies.length} case studies

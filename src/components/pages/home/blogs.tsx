@@ -34,11 +34,12 @@ interface TagBadgeProps {
 
 const TagBadge = ({ tag }: TagBadgeProps) => (
   <Badge
-    variant="outline"
     className={cn(
-      "px-3 py-1.5 rounded-xl ",
-      "text-neutral-800 body-code-regular lowercase text-sm 3xl:text-sm tracking-tight leading-[normal]",
-      "bg-white"
+      "font-medium",
+      "body-code-light",
+      "px-3 py-1.5 rounded-full",
+      "text-neutral-800 lowercase text-xs 3xl:text-sm tracking-tight",
+      "bg-white",
     )}
   >
     {tag.label}
@@ -74,7 +75,7 @@ const BlogCard = ({ post }: BlogCardProps) => {
             </p>
           </div>
           <div className="w-full flex flex-col md:flex-row items-start md:items-center justify-between gap-4 md:gap-0">
-            <div className="flex items-center gap-2 flex-wrap text-sm">
+            <div className="flex items-center gap-2 flex-wrap text-sm body-code-light">
               {post.tags.map((tag) => (
                 <TagBadge key={tag.label} tag={tag} />
               ))}

@@ -17,7 +17,7 @@ const ColorDots = ({
         className={cn(
           "rounded-full",
           color,
-          index === 0 ? "w-15 h-6" : "w-6 h-6",
+          index === 0 ? "w-12 h-4" : "w-4 h-4",
         )}
       />
     ))}
@@ -30,11 +30,11 @@ function GuestbookPage() {
       <div className="relative w-full h-full flex flex-col justify-center items-center gap-4 overflow-hidden pb-20 base:pb-52 px-4 md:px-12 xl:px-0">
            <HeaderWhite />
         <img
-          src="/images/heroziel.png"
+          src="/images/asteroids.png"
           alt=""
           className="w-full h-full absolute top-0 left-0 inset-0 object-cover"
         />
-        <h1 className="w-80 xl:w-126 3xl:w-150 bg-[linear-gradient(180deg,rgba(255,255,255,1)_70%,rgba(101,175,214,1)_100%)] [-webkit-background-clip:text] bg-clip-text [-webkit-text-fill-color:transparent] [text-fill-color:transparent] body-semibold text-transparent text-3xl xl:text-[64px] 3xl:text-7xl text-center tracking-[0] leading-normal xl:leading-18 3xl:leading-normal z-20">
+        <h1 className="w-80 xl:w-126 3xl:w-150 bg-[linear-gradient(180deg,rgba(255,255,255,1)_70%,rgba(101,175,214,1)_100%)] [-webkit-background-clip:text] bg-clip-text [-webkit-text-fill-color:transparent] [text-fill-color:transparent] body-semibold text-transparent text-3xl xl:text-5xl text-center tracking-[0] leading-normal xl:leading-18 3xl:leading-normal z-20">
           Guestbook
         </h1>
           <ColorDots />

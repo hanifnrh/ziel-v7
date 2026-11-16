@@ -182,7 +182,7 @@ export default function GuestbookEntries() {
       {!user && (
         <div className="flex flex-col sm:flex-row justify-center gap-4">
           <button onClick={() => signIn("github")}>
-            <div className="group relative bg-white px-6 py-4 flex items-center gap-2 w-fit border-3 border-neutral-200 rounded-[24px] overflow-hidden cursor-pointer">
+            <div className="group relative bg-white px-6 py-4 flex items-center gap-2 w-fit border-4 border-neutral-200 rounded-xl overflow-hidden cursor-pointer">
               <div className="absolute inset-0 bg-linear-to-t from-neutral-100 to-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
               <span className="body-medium text-neutral-800 relative z-10 flex items-center gap-2">
                 Sign in with GitHub
@@ -191,7 +191,7 @@ export default function GuestbookEntries() {
             </div>
           </button>
           <button onClick={() => signIn("google")}>
-            <div className="group relative bg-white px-6 py-4 flex items-center gap-2 w-fit border-3 border-sky-200 rounded-[24px] overflow-hidden cursor-pointer">
+            <div className="group relative bg-white px-6 py-4 flex items-center gap-2 w-fit border-4 border-blue-300 rounded-xl overflow-hidden cursor-pointer">
               <div className="absolute inset-0 bg-linear-to-t from-sky-100 to-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
               <span className="body-medium text-blue-500 relative z-10 flex items-center gap-2">
                 Sign in with Google
@@ -230,14 +230,14 @@ export default function GuestbookEntries() {
           <div className="flex w-full justify-between">
             <button
               onClick={signOut}
-              className="px-6 py-2 bg-white text-red-600 body-regular hover:bg-linear-to-t hover:shadow-lg active:scale-[0.98] border-4 border-red-200 rounded-2xl disabled:opacity-50 transition-all cursor-pointer"
+              className="px-6 py-2 bg-white text-red-600 body-regular hover:bg-linear-to-t hover:shadow-lg active:scale-[0.98] border-4 border-red-200 rounded-xl disabled:opacity-50 transition-all cursor-pointer"
             >
               Sign Out
             </button>
             <button
               type="submit"
               disabled={isSubmitting}
-              className="px-6 py-2 bg-linear-to-t from-blue-600 to-blue-400 text-white body-regular rounded-2xl border-4 border-blue-200 disabled:opacity-50 transition-all duration-200 hover:shadow-lg active:scale-[0.98] cursor-pointer"
+              className="px-6 py-2 bg-blue-500 text-white body-regular rounded-xl border-4 border-blue-200 disabled:opacity-50 transition-all duration-200 hover:shadow-lg active:scale-[0.98] cursor-pointer"
             >
               {isSubmitting ? "Posting..." : "Sign Guestbook"}
             </button>
@@ -265,7 +265,7 @@ export default function GuestbookEntries() {
                   />
                   <div>
                     <h4 className="body-regular">{entry.user_name}</h4>
-                    <p className="text-sm body-light text-neutral-100">
+                    <p className="text-xs tracking-tight body-code-light text-neutral-100">
                       {timeAgo(entry.created_at)}
                     </p>
                   </div>
@@ -278,11 +278,11 @@ export default function GuestbookEntries() {
           </div>
 
           {totalPages > 1 && (
-            <div className="flex justify-center items-center gap-2 flex-wrap z-20 bg-white rounded-[24px] p-2">
+            <div className="flex justify-center items-center gap-4 flex-wrap z-20 bg-slate-400/30 backdrop-blur-2xl rounded-lg p-2">
               <button
                 onClick={() => goToPage(currentPage - 1)}
                 disabled={currentPage === 1}
-                className="w-12 h-12 flex items-center justify-center bg-white rounded-md text-neutral-800 disabled:opacity-30 hover:bg-white/30 transition cursor-pointer"
+                className="w-12 h-12 flex items-center justify-center rounded-md text-white disabled:opacity-30 hover:bg-white/20 transition cursor-pointer"
               >
                 <ChevronLeft />
               </button>
@@ -291,10 +291,10 @@ export default function GuestbookEntries() {
                 <button
                   key={pageNum}
                   onClick={() => goToPage(pageNum)}
-                  className={`w-12 h-12 flex items-center justify-center rounded-md transition cursor-pointer body-regular ${
+                  className={`w-12 h-12 flex items-center justify-center rounded-md transition cursor-pointer body-code-medium ${
                     pageNum === currentPage
-                      ? "bg-linear-to-t from-blue-600 to-blue-400 text-white"
-                      : "text-neutral-600"
+                      ? "bg-white text-neutral-800"
+                      : "text-white"
                   }`}
                 >
                   {pageNum}
@@ -304,7 +304,7 @@ export default function GuestbookEntries() {
               <button
                 onClick={() => goToPage(currentPage + 1)}
                 disabled={currentPage === totalPages}
-                className="w-12 h-12 flex items-center justify-center bg-white rounded-md text-neutral-800 disabled:opacity-30 hover:bg-white/30 transition cursor-pointer"
+                className="w-12 h-12 flex items-center justify-center rounded-md text-white disabled:opacity-30 hover:bg-white/20 transition cursor-pointer"
               >
                 <ChevronRight />
               </button>
