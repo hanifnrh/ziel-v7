@@ -8,65 +8,56 @@ interface Props {
 }
 
 const {
-  title = "Ziel – Product Designer",
-  description = "Purpose-driven product designer.",
+  title = "ziel.work – Product Designer",
+  description = "Creative, versatile, and analytical designer.",
   ogImage = "https://ziel.work/images/zielwork.png",
 } = Astro.props;
 ---
 
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
-    <meta name="generator" content={Astro.generator} />
+<head>
+  <!-- Basic Meta -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width" />
+  <meta name="generator" content={Astro.generator} />
 
-    <!-- Fonts: declared ONCE, every page gets them -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:wght@100..1000&display=swap"
-      rel="stylesheet"
-    />
-    
-<link href="https://fonts.googleapis.com/css2?family=Google+Sans+Code:ital,wght,MONO@0,300..800,1;1,300..800,1&family=Google+Sans+Flex:opsz,wght@1..144,1..1000&display=swap" rel="stylesheet">
-   
+  <!-- Favicons (Already perfect from your screenshot) -->
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-title" content="ziel.work" />
+  <link rel="manifest" href="/site.webmanifest" />
 
-    <!-- Analytics -->
-    <script
-      defer
-      src="https://cloud.umami.is/script.js"
-      data-website-id="b440f280-3189-40df-b827-f98ffb664eac"
-    ></script>
+  <!-- Fonts & Analytics -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:wght@100..1000&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Code:ital,wght,MONO@0,300..800,1;1,300..800,1&family=Google+Sans+Flex:opsz,wght@1..144,1..1000&display=swap" rel="stylesheet">
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="b440f280-3189-40df-b827-f98ffb664eac"></script>
 
-    <!-- Meta -->
-    <title>{title}</title>
-    <meta name="description" content={description} />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
-    <meta property="og:image" content={ogImage} />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
+  <!-- Dynamic SEO Tags -->
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
 
-  <!-- Open Graph / Facebook / LinkedIn / WhatsApp / Slack / Discord -->
+  <!-- Open Graph / Facebook / LinkedIn / WhatsApp -->
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://ziel.work" />
-  <meta property="og:title" content="Ziel – Product Designer" />
-  <meta property="og:description" content="Purpose-driven product designer." />
-  <meta property="og:image" content="https://ziel.work/images/zielwork.png" />
-
-  <!-- Image Dimensions (Crucial for WhatsApp & others) -->
+  <meta property="og:url" content={new URL(Astro.url.pathname, Astro.site)} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={ogImage} />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="Ziel – Product Designer" />
+  <meta property="og:image:alt" content={title} />
 
   <!-- X / Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:site" content="@yourusername" />
-  <meta name="twitter:title" content="Ziel – Product Designer" />
-  <meta name="twitter:description" content="Purpose-driven product designer." />
-  <meta name="twitter:image" content="https://ziel.work/images/zielwork.png" />
-  </head>
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={ogImage} />
+</head>
 
  <body class="relative overflow-x-clip">
     <main class="max-w-[1920px] mx-auto shadow-none">
