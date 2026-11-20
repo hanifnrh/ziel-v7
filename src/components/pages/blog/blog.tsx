@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils";
 import { useState, useEffect } from "react";
 import { Loader } from "@/components/ui/loader";
 import { parseTags } from "@/lib/tags";
+import { getHeroBackgroundUrl } from "@/lib/cloudinary";
 
 // Types
 interface BlogTag {
@@ -66,6 +67,8 @@ const BlogCard = ({ post }: BlogCardProps) => (
         src={post.imageUrl}
         alt={post.title}
         className="w-full md:w-1/3 lg:w-75 lg:h-[166px] rounded-[18px] object-cover"
+        loading="lazy" // Defers loading
+        decoding="async" // Allows the browser to decode the image without blocking the main thread
       />
       <div className="flex flex-col items-start justify-between gap-2 md:gap-4 flex-1">
         <div className="flex flex-col items-start justify-center gap-1">
@@ -188,7 +191,7 @@ function BlogContent() {
                   tag
                   publishDate
                   featuredImage {
-                    url
+                   url(transformation: { image: { resize: { width: 600, height: 400, fit: clip } } })
                   }
                 }
               }
@@ -266,6 +269,7 @@ function BlogContent() {
     );
   }
 
+  const backgroundUrl = getHeroBackgroundUrl('Black_Hole_2');
   return (
     <div className="w-full p-0 md:p-6 3xl:p-12 bg-white">
       <section
@@ -273,16 +277,16 @@ function BlogContent() {
           relative w-full
           flex flex-col items-center gap-6 3xl:gap-12
           px-4 xl:px-24 py-12 xl:py-20
-          bg-[url('/images/baby-star.png')]
           bg-cover bg-center bg-no-repeat
           rounded-none sm:rounded-[24px]
         "
+        style={{ backgroundImage: `url(${backgroundUrl})` }}
       >
         {/* Header Section */}
         <header className="relative flex flex-col items-center gap-4 w-full xl:w-156.5 z-10">
-           <h1 className="body-semibold text-white text-3xl xl:text-5xl text-center tracking-[0] leading-normal xl:leading-18 3xl:leading-normal z-20">
-      Blogs
-    </h1>
+          <h1 className="body-semibold text-white text-3xl xl:text-5xl text-center tracking-[0] leading-normal xl:leading-18 3xl:leading-normal z-20">
+            Blogs
+          </h1>
           <DotsIndicator />
           <h3 className="text-base lg:text-xl text-white body-regular w-full xl:w-156.5 3xl:w-180 text-center leading-7">
             Thoughts, ideas, and exploration throughout my experience as

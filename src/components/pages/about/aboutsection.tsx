@@ -6,6 +6,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { getHeroBackgroundUrl } from "@/lib/cloudinary";
 
 const socials = [
   { href: "https://www.instagram.com/ziel.works/", icon: "/icons/instagram.svg", label: "Instagram" },
@@ -47,6 +48,8 @@ const skillCards = [
 ];
 
 function AboutSection() {
+    const backgroundUrl = getHeroBackgroundUrl('Unknown_Lifeform'); 
+
   return (
     // One provider for the whole section — delayDuration makes them snappy
     <TooltipProvider delayDuration={100}>
@@ -54,7 +57,7 @@ function AboutSection() {
         <div className="relative w-full flex flex-col justify-center items-center gap-4 3xl:gap-10 overflow-hidden pb-20 base:pb-52 3xl:pb-60 px-4 md:px-12 xl:px-0">
           <Header />
           <img
-            src="/images/telescopio-hubble.jpg"
+            src={backgroundUrl}
             alt=""
             className="w-screen h-full absolute top-0 left-0 inset-0 object-cover"
           />

@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils";
 import { useEffect, useState } from "react";
 import { formatDate } from "@/lib/date";
 import { parseTags } from "@/lib/tags";
+import { getHeroBackgroundUrl } from "@/lib/cloudinary";
 
 interface BlogTag {
   label: string;
@@ -61,6 +62,8 @@ const BlogCard = ({ post }: BlogCardProps) => {
           src={post.imageUrl}
           alt={post.title}
           className="w-full md:w-1/3 lg:w-75 lg:h-[166px] rounded-[18px] object-cover"
+           loading="lazy" // Defers loading
+          decoding="async" // Allows the browser to decode the image without blocking the main thread
         />
         <div className="flex flex-col items-start justify-between gap-2 md:gap-4 flex-1">
           <div className="flex flex-col items-start justify-center gap-1">
@@ -117,7 +120,7 @@ function Blogs() {
                   slug
                   publishDate
                   featuredImage {
-                    url
+                    url(transformation: { image: { resize: { width: 600, height: 400, fit: clip } } })
                   }
                   tag
                 }
@@ -186,17 +189,19 @@ function Blogs() {
     );
   }
 
+  const backgroundUrl = getHeroBackgroundUrl('Black_Hole_2');
+
   return (
     <div className="w-full p-0 md:p-6 3xl:p-12">
-      <section
+       <section
         className="
           relative w-full
           flex flex-col items-center gap-6 3xl:gap-12
           px-4 xl:px-24 py-12 xl:py-20
-          bg-[url('/images/baby-star.png')]
           bg-cover bg-center bg-no-repeat
-          rounded-none sm:rounded-[32px]
+          rounded-none sm:rounded-[24px]
         "
+        style={{ backgroundImage: `url(${backgroundUrl})` }}
       >
         {/* Header Section */}
         <header className="relative flex flex-col items-center gap-4 w-full xl:w-156.5 z-10">

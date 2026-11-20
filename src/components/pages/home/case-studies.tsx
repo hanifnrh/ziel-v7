@@ -93,10 +93,12 @@ const CaseStudyCard = ({ study }: CaseStudyCardProps) => {
   return (
     <article className="bg-white p-4 rounded-2xl w-full flex flex-col gap-4 group cursor-pointer hover:scale-[1.02] transition-transform duration-300">
       <div className="relative overflow-hidden rounded-2xl">
-        <img
+          <img
           src={study.imageUrl}
           alt={`${study.subtitle} case study`}
           className="w-full aspect-video object-cover rounded-2xl group-hover:scale-105 transition-transform duration-500"
+          loading="lazy" // Defers loading
+          decoding="async" // Allows the browser to decode the image without blocking the main thread
         />
         <div className="absolute inset-0 bg-linear-to-t from-blue-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
       </div>
@@ -145,7 +147,7 @@ const SectionHeader = ({
 }: SectionHeaderProps) => (
   <div className="flex flex-col lg:flex-row gap-4 lg:gap-0 items-start justify-between mb-8">
     <div className="w-full lg:w-115 flex flex-col gap-4">
-      <img src="/icons/case-study.svg" alt="" className="w-16 h-16"/>
+      <img src="/icons/case-study.svg" alt="" className="w-16 h-16" />
       <div className="flex flex-col gap-2">
         <h3 className="body-semibold text-neutral-800 text-2xl 3xl:text-3xl">
           {title}
@@ -190,17 +192,17 @@ function CaseStudiesPreview() {
           body: JSON.stringify({
             query: `
               query GetProjects {
-                projects(where:{ featured: true }, orderBy: publishDate_DESC, first: 3) {
-                  title
-                  subtitle
-                  description
-                  slug
-                  tag
-                  featuredImage {
-                    url
-                  }
-                }
-              }
+  projects(where: { featured: true }, orderBy: publishDate_DESC, first: 3) {
+    title
+    subtitle
+    description
+    slug
+    tag
+    featuredImage {
+      url(transformation: { image: { resize: { width: 600, height: 400, fit: clip } } })
+    }
+  }
+}
             `,
           }),
         });

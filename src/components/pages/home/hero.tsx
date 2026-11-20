@@ -4,6 +4,7 @@ import { ChevronsRight, Disc2, Download, FileSearchCorner } from "lucide-react";
 import React from "react";
 import HeaderWhite from "../header-white";
 import { Cover } from "@/components/ui/cover";
+import { getHeroBackgroundUrl } from "@/lib/cloudinary";
 
 const tools = [
   {
@@ -29,10 +30,12 @@ const tools = [
 ];
 
 const Hero = () => {
+    const backgroundUrl = getHeroBackgroundUrl('Asteroids'); 
+    
   return (
     <div className="relative w-full">
       <img
-        src="/images/asteroids.png"
+        src={backgroundUrl}
         alt=""
         className="absolute top-0 left-0 w-full h-210 3xl:h-240 object-cover brightness-80"
       />

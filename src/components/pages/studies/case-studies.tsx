@@ -87,6 +87,8 @@ const CaseStudyCard = ({ study }: { study: CaseStudy }) => (
           src={study.imageUrl}
           alt={`${study.subtitle} case study`}
           className="w-full aspect-video object-cover rounded-2xl group-hover:scale-105 transition-transform duration-500"
+          loading="lazy" // Defers loading
+          decoding="async" // Allows the browser to decode the image without blocking the main thread
         />
         <div className="absolute inset-0 bg-linear-to-t from-blue-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
       </div>
@@ -228,7 +230,7 @@ function CaseStudies() {
                   tag
                   publishDate
                   cardColor
-                  featuredImage { url }
+                  featuredImage { url(transformation: { image: { resize: { width: 600, height: 400, fit: clip } } }) }
                 }
               }
             `,

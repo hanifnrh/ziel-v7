@@ -2,6 +2,7 @@
 import GuestbookEntries from "@/pages/guestbook/_guestbookEntries";
 import HeaderWhite from "../header-white";
 import { cn } from "@/lib/utils";
+import { getHeroBackgroundUrl } from "@/lib/cloudinary";
 
 interface ColorDotsProps {
   colors?: string[];
@@ -25,12 +26,14 @@ const ColorDots = ({
 );
 
 function GuestbookPage() {
+   const backgroundUrl = getHeroBackgroundUrl('Asteroids'); 
+
   return (
     <div className="w-full">
       <div className="relative w-full h-full flex flex-col justify-center items-center gap-4 overflow-hidden pb-20 base:pb-52 px-4 md:px-12 xl:px-0">
            <HeaderWhite />
         <img
-          src="/images/asteroids.png"
+          src={backgroundUrl}
           alt=""
           className="w-full h-full absolute top-0 left-0 inset-0 object-cover"
         />
