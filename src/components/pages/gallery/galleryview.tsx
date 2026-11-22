@@ -8,8 +8,14 @@ import { X } from "lucide-react";
 interface HygraphImage {
   id: string;
   imageTitle: string;
-  image: { url: string };
-  additionImage?: { url: string };
+  image: {
+    thumbnail: string;
+    full: string;
+  };
+  additionImage?: {
+    thumbnail: string;
+    full: string;
+  };
   imageDescription?: string;
   imageTag: string[];
 }
@@ -23,8 +29,10 @@ interface GalleryTag {
 interface GalleryItem {
   id: string;
   title: string;
-  imageUrl: string;
+  imageUrl: string;       // Thumbnail for grid
+  fullImageUrl: string;   // High-res for modal
   additionImageUrl?: string;
+  fullAdditionImageUrl?: string;
   description?: string;
   tags: GalleryTag[];
 }
@@ -108,15 +116,18 @@ const ImageModal = ({
         <div className="space-y-4 p-6">
           <h2 className="text-2xl body-semibold mb-4">{image.title}</h2>
           <img
-            src={image.imageUrl}
+            src={image.fullImageUrl}
             alt={image.title}
             className="w-full rounded-lg object-contain"
+            decoding="async"
+            fetchPriority="high"
           />
-          {image.additionImageUrl && (
+          {image.fullAdditionImageUrl && (
             <img
-              src={image.additionImageUrl}
+              src={image.fullAdditionImageUrl}
               alt={`${image.title} - additional`}
               className="w-full rounded-lg object-contain"
+              decoding="async"
             />
           )}
         </div>
@@ -158,6 +169,7 @@ const GalleryCard = ({
         src={item.imageUrl}
         alt={item.title}
         loading="lazy"
+        decoding="async"
         className="w-full h-auto object-cover rounded-2xl group-hover:scale-105 transition-transform duration-500"
       />
       <div className="absolute inset-0 bg-linear-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -203,8 +215,14 @@ function GalleryView() {
                 galleries {
                   id
                   imageTitle
-                  image { url }
-                  additionImage { url }
+                  image {
+                    thumbnail: url(transformation: { image: { resize: { width: 800 }, quality: { value: 80 } } })
+                    full: url(transformation: { image: { resize: { width: 1600 }, quality: { value: 90 } } })
+                  }
+                  additionImage {
+                    thumbnail: url(transformation: { image: { resize: { width: 800 }, quality: { value: 80 } } })
+                    full: url(transformation: { image: { resize: { width: 1600 }, quality: { value: 90 } } })
+                  }
                   imageDescription
                   imageTag
                 }
@@ -221,8 +239,10 @@ function GalleryView() {
           hygraphImages.map((item) => ({
             id: item.id,
             title: item.imageTitle,
-            imageUrl: item.image?.url || "/images/fallback.png",
-            additionImageUrl: item.additionImage?.url,
+            imageUrl: item.image?.thumbnail || "/images/fallback.png",
+            fullImageUrl: item.image?.full || "/images/fallback.png",
+            additionImageUrl: item.additionImage?.thumbnail,
+            fullAdditionImageUrl: item.additionImage?.full,
             description: item.imageDescription,
             tags: parseTags(item.imageTag).map((t) => ({
               label: t.label,
